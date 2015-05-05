@@ -33,3 +33,8 @@ notifications:
     - mike@kalamuna.com
     - ben@kalamuna.com
     on_success: always
+env:
+  global:
+  - secure: pcx7coHM0C7pV1rDayw/ZedRZDY1mewvAMdnF4HTd2n53N3ns0Xr0u2gMiTzQcR7vncXUOzr69olJ8W7sJxVNNEh36NMKwkq8bTWor6tsJ/62gNgBy49zwsVSyjQxcPrHmAeT/0eierkNYoTdmcF06CWgI+bpKPh9qiduPsDoWE=
+  - secure: mmcNZ0aWuthzX2GbIZeceBVfFXbWbzvRCbHmyOChxukwCA8/RwZybhYSmivZeXgU4k0zGGAJY/bhI4gB9/pmfed3Kgmj5PthtT2Wnh1k9pBlC2HXjc+kjMlAYUa8VVHeODyj+tDiJ4o35DFiB+4pC3IZPHtNRa/PXsDToOLduaw=
+  - secure: XRBTSJ4k/bXWOHcnA8c47SziwVgGvEbV2Wa5SOsyv8USsVYzlNBHvc23KEqajT/dtuI0Wzw0PtFVR7OBZpGmaByNtWAsq5dqMUnu4ktEiOMx93Jya/IHRtRscPSkjkUFDz0biiD/bcEFJK26gnaLWgL7d+lwGCHmo05ODafc+zc=
