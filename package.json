@@ -1,0 +1,33 @@
+{
+  "name": "kalabox-app-drupal",
+  "description": "A Kalabox app plugin to spin up drupal sites.",
+  "keywords": [
+    "docker",
+    "kalabox",
+    "drupal"
+  ],
+  "version": "0.7.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kalabox/kalabox-app-drupal.git"
+  },
+  "bugs": {
+    "url": "http://github.com/kalabox/kalabox-app-drupal",
+    "email": "mike@kalamuna.com"
+  },
+  "dependencies": {
+    "kalabox-plugin-dbenv": "~0.7.0",
+    "kalabox-plugin-drush": "~0.7.0",
+    "kalabox-plugin-git": "~0.7.0",
+    "kalabox-plugin-rsync": "~0.7.0",
+    "lodash": "^3.7.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-bump": "0.0.16",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-jscs": "~0.8.1",
+    "jshint-stylish": "~1.0.0",
+    "matchdep": "^0.3.0"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "replace-me",
+  "dependencies": {
+    "kalabox-plugin-dbenv": "~0.7.0",
+    "kalabox-plugin-drush": "~0.7.0",
+    "kalabox-plugin-git": "~0.7.0",
+    "kalabox-plugin-rsync": "~0.7.0"
+  }
+}
