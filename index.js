@@ -4,7 +4,20 @@ var _ = require('lodash');
 
 module.exports = function(kbox) {
 
-  var deps = kbox.core.deps;
+  var drupalMatrix = {
+    '6': {
+      php: '5.3.29',
+      drush: '5'
+    },
+    '7': {
+      php: '5.4.36',
+      drush: '6'
+    },
+    '8': {
+      php: '5.5.20',
+      drush: '7'
+    }
+  };
 
   // Declare our app to the world
   kbox.create.add('drupal', {
@@ -21,19 +34,20 @@ module.exports = function(kbox) {
       name: 'name',
       weight: -99,
       task: {
-        name: 'name',
-        alias: 'n',
         kind: 'string',
         description: 'The name of your app.',
       },
-      properties: {
-        message: 'Name this app'.rainbow,
-        required: true,
-        type: 'string',
-        validator: /^[a-z0-9 ]+$/i,
-        warning: 'App name must be alphanumeric.',
-        default: 'My Drupal 7 App',
-        before: function(value) { return _.kebabCase(value); }
+      inquire: {
+        type: 'input',
+        message: 'What will this app be called',
+        validate: function(value) {
+          // @todo some actual validation here
+          return true;
+        },
+        filter: function(value) {
+          return _.kebabCase(value);
+        },
+        default: 'My Drupal App'
       },
       conf: {
         type: 'global',
@@ -42,7 +56,25 @@ module.exports = function(kbox) {
     }
   });
 
-  require('./node_modules/kalabox-plugin-drush/create.js')(kbox, 'drupal');
+  // Add an option
+  kbox.create.add('drupal', {
+    option: {
+      name: 'drupal-version',
+      weight: -98,
+      inquire: {
+        type: 'list',
+        message: 'What major version of drupal',
+        default: '7',
+        choices: Object.keys(drupalMatrix)
+      }
+    }
+  });
+
+  require('./node_modules/kalabox-plugin-drush/create.js')(
+    kbox,
+    drupalMatrix,
+    'drupal'
+  );
   require('./node_modules/kalabox-plugin-git/create.js')(kbox, 'drupal');
 
   // Task to create kalabox apps
