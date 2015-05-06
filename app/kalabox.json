@@ -25,7 +25,8 @@
   "appComponents": {
     "appserver": {
       "image": {
-        "name": "kalabox/php-appserver:stable"
+        "name": "kalabox/php-appserver:stable",
+        "srcRoot": ":appRoot:"
       },
       "proxy": [
         {
@@ -36,7 +37,8 @@
     },
     "db": {
       "image": {
-        "name": "kalabox/mariadb:stable"
+        "name": "kalabox/mariadb:stable",
+        "srcRoot": ":appRoot:"
       }
     }
   }

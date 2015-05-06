@@ -15,7 +15,7 @@ $aliases['dev'] = array(
               'username' => 'kalabox',
               'password' => '',
               'port' => 3306,
-              'host' => 'drupal7.kbox',
+              'host' => 'drupal.kbox',
               'database' => 'kalabox',
             ),
         ),
