@@ -12,7 +12,10 @@
   ],
   "pluginConf": {
     "kalabox-plugin-drush": {
-      "drush-version": "drush6"
+      "drush-version": "6"
+    },
+    "kalabox-plugin-php": {
+      "php-version": "5.4.36"
     },
     "kalabox-plugin-dbenv": {
       "settings": {
@@ -25,7 +28,7 @@
   "appComponents": {
     "appserver": {
       "image": {
-        "name": "kalabox/php-appserver:stable",
+        "name": "kalabox/php-appserver:dev",
         "srcRoot": ":appRoot:"
       },
       "proxy": [
@@ -37,7 +40,7 @@
     },
     "db": {
       "image": {
-        "name": "kalabox/mariadb:stable",
+        "name": "kalabox/mariadb:dev",
         "srcRoot": ":appRoot:"
       }
     }

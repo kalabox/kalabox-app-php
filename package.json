@@ -19,6 +19,7 @@
     "kalabox-plugin-dbenv": "~0.7.0",
     "kalabox-plugin-drush": "~0.7.0",
     "kalabox-plugin-git": "~0.7.0",
+    "kalabox-plugin-php": "~0.7.0",
     "kalabox-plugin-rsync": "~0.7.0",
     "lodash": "^3.7.0"
   },

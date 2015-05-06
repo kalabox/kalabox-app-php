@@ -70,11 +70,21 @@ module.exports = function(kbox) {
     }
   });
 
+  // Load php things
+  require('./node_modules/kalabox-plugin-php/create.js')(
+    kbox,
+    _.merge({}, drupalMatrix, {'9': {php: '5.6.4'}}),
+    'drupal'
+  );
+
+  // Load drush things
   require('./node_modules/kalabox-plugin-drush/create.js')(
     kbox,
     drupalMatrix,
     'drupal'
   );
+
+  // Load git things
   require('./node_modules/kalabox-plugin-git/create.js')(kbox, 'drupal');
 
   // Task to create kalabox apps
