@@ -6,7 +6,7 @@
     "kalabox",
     "drupal"
   ],
-  "version": "0.7.5",
+  "version": "0.7.6",
   "repository": {
     "type": "git",
     "url": "https://github.com/kalabox/kalabox-app-drupal.git"
