@@ -2,8 +2,9 @@
   "appName": "my-drupal-app",
   "appPlugins": [
     "kalabox-plugin-dbenv",
-    "kalabox-plugin-git",
     "kalabox-plugin-drush",
+    "kalabox-plugin-git",
+    "kalabox-plugin-php",
     "kalabox-plugin-rsync"
   ],
   "shareIgnores": [
