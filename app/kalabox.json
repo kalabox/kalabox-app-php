@@ -16,7 +16,7 @@
       "drush-version": "6"
     },
     "kalabox-plugin-php": {
-      "php-version": "5.4.36"
+      "php-version": "5.4.40"
     },
     "kalabox-plugin-dbenv": {
       "settings": {
