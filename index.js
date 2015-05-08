@@ -10,11 +10,11 @@ module.exports = function(kbox) {
       drush: '5'
     },
     '7': {
-      php: '5.4.36',
+      php: '5.4.40',
       drush: '6'
     },
     '8': {
-      php: '5.5.20',
+      php: '5.5.24',
       drush: '7'
     }
   };
@@ -73,7 +73,7 @@ module.exports = function(kbox) {
   // Load php things
   require('./node_modules/kalabox-plugin-php/create.js')(
     kbox,
-    _.merge({}, drupalMatrix, {'9': {php: '5.6.4'}}),
+    drupalMatrix,
     'drupal'
   );
 
