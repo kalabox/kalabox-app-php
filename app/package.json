@@ -1,10 +1,10 @@
 {
   "name": "replace-me",
   "dependencies": {
-    "kalabox-plugin-dbenv": "https://github.com/kalabox/kalabox-plugin-dbenv/tarball/v0.8.0-beta",
-    "kalabox-plugin-drush": "https://github.com/kalabox/kalabox-plugin-drush/tarball/v0.8.0-beta",
-    "kalabox-plugin-git": "https://github.com/kalabox/kalabox-plugin-git/tarball/v0.8.0-beta",
-    "kalabox-plugin-php": "https://github.com/kalabox/kalabox-plugin-php/tarball/v0.8.0-beta",
-    "kalabox-plugin-rsync": "https://github.com/kalabox/kalabox-plugin-rsync/tarball/v0.8.0-beta"
+    "kalabox-plugin-dbenv": "~0.8.0",
+    "kalabox-plugin-drush": "~0.8.0",
+    "kalabox-plugin-git": "~0.8.0",
+    "kalabox-plugin-php": "~0.8.0",
+    "kalabox-plugin-rsync": "~0.8.0"
   }
 }
