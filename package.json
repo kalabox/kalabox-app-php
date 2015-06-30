@@ -6,7 +6,7 @@
     "kalabox",
     "drupal"
   ],
-  "version": "0.8.1",
+  "version": "0.9.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/kalabox/kalabox-app-drupal.git"
@@ -16,11 +16,11 @@
     "email": "mike@kalamuna.com"
   },
   "dependencies": {
-    "kalabox-plugin-dbenv": "~0.8.0",
-    "kalabox-plugin-drush": "~0.8.0",
-    "kalabox-plugin-git": "~0.8.0",
-    "kalabox-plugin-php": "~0.8.0",
-    "kalabox-plugin-rsync": "~0.8.0",
+    "kalabox-plugin-dbenv": "https://github.com/kalabox/kalabox-plugin-dbenv/tarball/elton-rocketman",
+    "kalabox-plugin-drush": "https://github.com/kalabox/kalabox-plugin-drush/tarball/elton-rocketman",
+    "kalabox-plugin-git": "https://github.com/kalabox/kalabox-plugin-git/tarball/elton-rocketman",
+    "kalabox-plugin-php": "https://github.com/kalabox/kalabox-plugin-php/tarball/elton-rocketman",
+    "kalabox-plugin-rsync": "https://github.com/kalabox/kalabox-plugin-rsync/tarball/elton-rocketman",
     "lodash": "^3.7.0"
   },
   "devDependencies": {
