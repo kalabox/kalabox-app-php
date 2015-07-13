@@ -85,7 +85,7 @@ module.exports = function(kbox) {
   );
 
   // Load git things
-  require('./node_modules/kalabox-plugin-git/create.js')(kbox, 'drupal');
+  require('./node_modules/kalabox-plugin-git/lib/create.js')(kbox, 'drupal');
 
   // Task to create kalabox apps
   kbox.tasks.add(function(task) {
