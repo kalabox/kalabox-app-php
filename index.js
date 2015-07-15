@@ -78,7 +78,7 @@ module.exports = function(kbox) {
   );
 
   // Load drush things
-  require('./node_modules/kalabox-plugin-drush/create.js')(
+  require('./node_modules/kalabox-plugin-drush/lib/create.js')(
     kbox,
     drupalMatrix,
     'drupal'
