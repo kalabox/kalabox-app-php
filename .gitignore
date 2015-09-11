@@ -21,3 +21,4 @@ built
 *.tar
 *.id_rsa
 string
+vendor

@@ -15,12 +15,22 @@
     "url": "http://github.com/kalabox/kalabox-app-drupal",
     "email": "mike@kalamuna.com"
   },
+  "scripts": {
+    "postinstall": "node ./scripts/downloadLibs.js"
+  },
+  "postInstallAssets": {
+    "kalabox-plugin-drush": {
+      "create": "lib/create.js"
+    },
+    "kalabox-plugin-git": {
+      "create": "lib/create.js"
+    },
+    "kalabox-plugin-php": {
+      "create": "create.js"
+    }
+  },
   "dependencies": {
-    "kalabox-plugin-dbenv": "^0.10.0",
-    "kalabox-plugin-drush": "^0.10.0",
-    "kalabox-plugin-git": "^0.10.0",
-    "kalabox-plugin-php": "^0.10.0",
-    "kalabox-plugin-rsync": "^0.10.0",
+    "fs-extra": "^0.18.2",
     "lodash": "^3.7.0"
   },
   "devDependencies": {

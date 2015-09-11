@@ -2,6 +2,9 @@
 
 var _ = require('lodash');
 
+// Pkg.json
+var pkgJson = require('./package.json');
+
 module.exports = function(kbox) {
 
   var drupalMatrix = {
@@ -71,21 +74,24 @@ module.exports = function(kbox) {
   });
 
   // Load php things
-  require('./node_modules/kalabox-plugin-php/create.js')(
+  require(pkgJson.postInstallAssets['kalabox-plugin-php'].create)(
     kbox,
     drupalMatrix,
     'drupal'
   );
 
   // Load drush things
-  require('./node_modules/kalabox-plugin-drush/lib/create.js')(
+  require(pkgJson.postInstallAssets['kalabox-plugin-drush'].create)(
     kbox,
     drupalMatrix,
     'drupal'
   );
 
   // Load git things
-  require('./node_modules/kalabox-plugin-git/lib/create.js')(kbox, 'drupal');
+  require(pkgJson.postInstallAssets['kalabox-plugin-git'].create)(
+    kbox,
+    'drupal'
+  );
 
   // Task to create kalabox apps
   kbox.tasks.add(function(task) {
