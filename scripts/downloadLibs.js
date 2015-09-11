@@ -33,7 +33,7 @@ var getMinorVersion = function() {
   var parts = pkgJson.version.split('.');
   return parts[1];
 
-}
+};
 
 /*
  * Simple function to make a github api request
@@ -96,7 +96,7 @@ var getDevMode = function() {
   var devMode;
 
   // If the environment is a no go try to load from custom kalabox.json
-  if (process.env['KALABOX_DEV'] === undefined) {
+  if (process.env.KALABOX_DEV === undefined) {
 
     // Construct kbox.json path
     var kboxJsonFile = path.join(getHomeDir(), '.kalabox', 'kalabox.json');
@@ -117,7 +117,7 @@ var getDevMode = function() {
   else {
 
     // Set it
-    devMode = (process.env['KALABOX_DEV']) ? process.env['KALABOX_DEV'] : false;
+    devMode = (process.env.KALABOX_DEV) ? process.env.KALABOX_DEV : false;
 
   }
 
@@ -132,7 +132,7 @@ var getDevMode = function() {
 var getProjectVersion = function(project, callback) {
 
   // If we are in dev mode this is trivial
-  if (getDevMode() == 'true') {
+  if (getDevMode() === true || getDevMode() === 'true') {
     callback('master');
   }
   // If not we need to do some exploration on the github API
@@ -156,9 +156,11 @@ var getProjectVersion = function(project, callback) {
       // Grab the first tag that shares the minor version
       // we assume this lists the most recent tags first
       var minorVersion = _.result(_.find(data, function(release) {
-        var minorVersionParts = release.name.split('.');
+        if (release.name) {
+          var minorVersionParts = release.name.split('.');
+          return projectVer.toString() === minorVersionParts[1];
+        }
         // @todo: What happens if we have no project releases for this version?
-        return projectVer.toString() === minorVersionParts[1];
       }), 'name');
 
       callback(minorVersion);
@@ -177,49 +179,56 @@ var writeInternetFile = function(project, location, callback) {
   // Get version we are going to use before we start
   getProjectVersion(project, function(version) {
 
-    // this should be the github path
-    var urlPath = path.join('kalabox', project, version, location);
+    // This protects against the use case where you aren't in dev mode
+    // but you also have no published packages for the minor version
+    if (version === undefined) {
+      callback(false);
+    }
+    else {
+      // this should be the github path
+      var urlPath = path.join('kalabox', project, version, location);
 
-    // Request opts for RAW github content
-    var options = {
-      hostname: 'raw.githubusercontent.com',
-      port: 443,
-      path: '/' + urlPath,
-      method: 'GET',
-      headers: {'User-Agent': 'Kalabox'}
-    };
+      // Request opts for RAW github content
+      var options = {
+        hostname: 'raw.githubusercontent.com',
+        port: 443,
+        path: '/' + urlPath,
+        method: 'GET',
+        headers: {'User-Agent': 'Kalabox'}
+      };
 
-    // Create our vendor dirs if needed
-    var filePath = path.join('vendor', project, path.dirname(location));
-    fs.mkdirsSync(filePath);
+      // Create our vendor dirs if needed
+      var filePath = path.join('vendor', project, path.dirname(location));
+      fs.mkdirsSync(filePath);
 
-    // Construct the file object
-    var fileName = path.basename(location);
-    var file = fs.createWriteStream(path.join(filePath, fileName));
+      // Construct the file object
+      var fileName = path.basename(location);
+      var file = fs.createWriteStream(path.join(filePath, fileName));
 
-    // Make the request and write the stream to file
-    var req = https.request(options, function(res) {
+      // Make the request and write the stream to file
+      var req = https.request(options, function(res) {
 
-      // Wrtie stream to disk
-      res.on('data', function(d) {
-        file.write(d);
+        // Wrtie stream to disk
+        res.on('data', function(d) {
+          file.write(d);
+        });
+
+        // Return some stuff
+        res.on('end', function() {
+          callback(urlPath, filePath);
+        });
+
       });
 
-      // Return some stuff
-      res.on('end', function() {
-        callback(urlPath, filePath);
+      // Fin
+      req.end();
+
+      // Errors
+      req.on('error', function(err) {
+        console.error(err);
       });
-
-    });
-
-    // Fin
-    req.end();
-
-    // Errors
-    req.on('error', function(err) {
-      console.error(err);
-    });
-  })
+    }
+  });
 
 };
 
@@ -237,9 +246,14 @@ _.forEach(assets, function(files, project) {
     };
 
     writeInternetFile(project, file, function(url, loc) {
-      console.log(
-        'Grabbed a file from ' + url + ' doth put it hither: ' + loc
-      );
+      var msg;
+      if (url === false) {
+        msg = 'No latest package for this version. Try running in devMode';
+      }
+      else {
+        msg = 'Grabbed a file from ' + url + ' doth put it hither: ' + loc;
+      }
+      console.log(msg);
     });
 
   });
