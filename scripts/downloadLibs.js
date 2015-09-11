@@ -132,12 +132,11 @@ var getDevMode = function() {
 var getProjectVersion = function(project, callback) {
 
   // If we are in dev mode this is trivial
-  if (getDevMode() === true) {
+  if (getDevMode() == 'true') {
     callback('master');
   }
   // If not we need to do some exploration on the github API
   else {
-
     // Request opts to find the github tags for a project
     var options = {
       hostname: 'api.github.com',
@@ -158,8 +157,7 @@ var getProjectVersion = function(project, callback) {
       // we assume this lists the most recent tags first
       var minorVersion = _.result(_.find(data, function(release) {
         var minorVersionParts = release.name.split('.');
-        // Debug for version 9
-        //projectVer = 9;
+        // @todo: What happens if we have no project releases for this version?
         return projectVer.toString() === minorVersionParts[1];
       }), 'name');
 
