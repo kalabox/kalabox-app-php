@@ -16,11 +16,11 @@
     "email": "mike@kalamuna.com"
   },
   "dependencies": {
-    "kalabox-plugin-dbenv": "https://github.com/kalabox/kalabox-plugin-dbenv/tarball/master",
-    "kalabox-plugin-drush": "https://github.com/kalabox/kalabox-plugin-drush/tarball/master",
-    "kalabox-plugin-git": "https://github.com/kalabox/kalabox-plugin-git/tarball/master",
-    "kalabox-plugin-php": "https://github.com/kalabox/kalabox-plugin-php/tarball/master",
-    "kalabox-plugin-rsync": "https://github.com/kalabox/kalabox-plugin-rsync/tarball/master",
+    "kalabox-plugin-dbenv": "^0.10.0",
+    "kalabox-plugin-drush": "^0.10.0",
+    "kalabox-plugin-git": "^0.10.0",
+    "kalabox-plugin-php": "^0.10.0",
+    "kalabox-plugin-rsync": "^0.10.0",
     "lodash": "^3.7.0"
   },
   "devDependencies": {
