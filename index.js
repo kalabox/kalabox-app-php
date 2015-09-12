@@ -1,11 +1,15 @@
 'use strict';
 
-var _ = require('lodash');
-
-// Pkg.json
-var pkgJson = require('./package.json');
-
 module.exports = function(kbox) {
+
+  // Instrinsic mods
+  var path = require('path');
+
+  // NPM modules
+  var _ = require('lodash');
+
+  // Pkg.json
+  var pkgJson = require('./package.json');
 
   var drupalMatrix = {
     '6': {
@@ -74,21 +78,33 @@ module.exports = function(kbox) {
   });
 
   // Load php things
-  require(pkgJson.postInstallAssets['kalabox-plugin-php'].create)(
+  var phpPluginName = 'kalabox-plugin-php';
+  var phpCreatePath = pkgJson.postInstallAssets[phpPluginName].create;
+  var phpModPath = path.join('vendor', phpPluginName, phpCreatePath);
+  var phpCreateFile = './' + phpModPath;
+  require(phpCreateFile)(
     kbox,
     drupalMatrix,
     'drupal'
   );
 
   // Load drush things
-  require(pkgJson.postInstallAssets['kalabox-plugin-drush'].create)(
+  var drushPluginName = 'kalabox-plugin-drush';
+  var drushCreatePath = pkgJson.postInstallAssets[drushPluginName].create;
+  var drushModPath = path.join('vendor', drushPluginName, drushCreatePath);
+  var drushCreateFile = './' + drushModPath;
+  require(drushCreateFile)(
     kbox,
     drupalMatrix,
     'drupal'
   );
 
   // Load git things
-  require(pkgJson.postInstallAssets['kalabox-plugin-git'].create)(
+  var gitPluginName = 'kalabox-plugin-git';
+  var gitCreatePath = pkgJson.postInstallAssets[gitPluginName].create;
+  var gitModPath = path.join('vendor', gitPluginName, gitCreatePath);
+  var gitCreateFile = './' + gitModPath;
+  require(gitCreateFile)(
     kbox,
     'drupal'
   );
