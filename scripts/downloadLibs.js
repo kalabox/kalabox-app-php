@@ -186,7 +186,7 @@ var writeInternetFile = function(project, location, callback) {
     }
     else {
       // this should be the github path
-      var urlPath = path.join('kalabox', project, version, location);
+      var urlPath = ['kalabox', project, version, location].join('/');
 
       // Request opts for RAW github content
       var options = {
