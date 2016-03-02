@@ -71,9 +71,10 @@ module.exports = function(kbox) {
             };
 
             // See if these are proxied services
-            var proxied = _.find(config.pluginconfig.services, function(data, key) {
-              return key === name;
-            });
+            var proxied = _.find(
+              config.pluginconfig.services,
+              function(data, key) {return key === name;}
+            );
             if (!_.isEmpty(proxied)) {
               serviceSummary.url = getServiceUrls(proxied);
             }
