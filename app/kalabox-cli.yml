@@ -42,14 +42,10 @@ cli:
 # drush, wp-cli and terminus.
 #
 drush:
-
-  # Comment this and uncomment 'build' below if you want to edit your
-  # local dockerfile and build from there. This is useful for development
-  image: drush/drush:$KALABOX_APP_DRUPAL_DRUSH
-
-  # Uncomment this and comment 'image' above if you want to edit your
-  # local dockerfile and build from there. This is useful for development
-  #
+  image: drush/drush:$KALABOX_APP_DRUPAL_CONFIG_DRUSH
+  volumes:
+    - $KALABOX_ENGINE_HOME:/user
+    - $KALABOX_APP_ROOT:/src
   volumes_from:
     - data
   environment:

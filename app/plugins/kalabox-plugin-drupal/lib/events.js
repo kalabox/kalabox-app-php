@@ -19,17 +19,6 @@ module.exports = function(kbox) {
     kbox.core.env.setEnvFromObj(app.config.pluginconfig.drupal, identifier);
 
     /*
-     * Build the site after post-create happens
-     */
-    events.on('post-create-app', function(app, done) {
-
-      // extract the drupal code
-      // and set the correct permissions
-      done();
-
-    });
-
-    /*
      * We don't want to uninstall our data container on a rebuild
      * so remove the data container from here
      *

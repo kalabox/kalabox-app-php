@@ -136,7 +136,7 @@ module.exports = function(kbox) {
           // Generate information about services if we can
           .then(function(runningServices) {
             if (_.isEmpty(runningServices)) {
-              return false
+              return false;
             }
             else {
               return Promise.map(runningServices, function(service) {

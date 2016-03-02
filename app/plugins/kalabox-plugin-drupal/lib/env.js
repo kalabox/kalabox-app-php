@@ -14,7 +14,7 @@ module.exports = function(kbox) {
      * Load our app config
      */
     var getConfig = function() {
-      return kbox.util.yaml.toJson(confPath).pluginconfig.drupal;
+      return app.pluginconfig.drupal;
     };
 
     // Set some fun ENV action
