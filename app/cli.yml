@@ -1,0 +1,180 @@
+#
+# Cli plugin task definition
+#
+# If the cli plugin is enabled in kalabox.yml then this file will be
+# used used to specify the tooling commands that this app can run.
+#
+# Each object defines a specific task. When a task is implemnented correctly
+# it should show up when you run `kbox` inside of your app. T
+#
+# Tasks can use any of the services in kalabox-compose.yml, kalabox-cli.yml or
+# other compose files you load with your app.
+#
+# Here is a general description of a task object
+#
+# commandname:
+#
+#   service: [service] - The service on which to run the command.
+#
+#   stripfirst: [true|false] - If your commandname key is different from the
+#     entrypoint you might want to strip the commandname aka running `kgit git`
+#     vs `kgit`.
+#
+#   entrypoint: [string|array] - The binary to use. This will default to the
+#     entrypoint of the service.
+#
+#   description: [string] - A human readable description that will show up
+#     on the CLI.
+#
+#   precmdopts: [string] - A string of options to insert between the entrypoint
+#     and the command the user types.
+#
+#   postcmdopts: [string] - A string to append to the user entered command.
+#
+#   mapping: [string] - A string that maps an approot path to a path inside the container
+#     so we can set a accurate working directory for our task. You can use <> notation to
+#     map to other properties on the app object
+#
+#
+# NOTE: You will want to make sure your services correctly set relevant options
+# such as sharing config files or the working directory.
+#
+
+#
+# Adds a git command to your Pantheon app.
+#
+# You can still use your local git if you want. We also use a git wrapper called
+# `kgit` to handle sharing files correctly.
+#
+# By default your git commands will use your Pantheon ssh key and git user/email
+# will be based on your Pantheon info.
+#
+# This will run relative to your webroot.
+#
+git:
+  service: cli
+  stripfirst: true
+  entrypoint: kgit
+  description: Run a git command on your codebase
+  mapping: <config.syncthing.codeDir>:/var/www/html
+
+#
+# Adds a rsync command to your Pantheon app.
+#
+# This will run relative to your files directory.
+#
+rsync:
+  service: cli
+  entrypoint: rsync
+  description: Run a rsync command on your files directory
+  mapping: files:/media
+
+#
+# This will drop you into a bash shell on your appserver
+#
+terminal:
+  service: appserver
+  stripfirst: true
+  entrypoint: bash
+  description: "'ssh' into your appserver"
+
+#
+# Adds a mysql command to your pantheon app.
+#
+# Commands will be run relative to your webroot.
+#
+mysql:
+  service: appserver
+  precmdopts: -udrupal
+  entrypoint: mysql
+  description: Drop into a mysql shell
+  mapping: <config.syncthing.codeDir>:/var/www/html
+
+#
+# Adds a drush 8 command to your pantheon app.
+#
+# This will share the drush config that lives in config/drush relative to your
+# app root. So you can drop custom aliases and command files in there. Drush
+# will also use your pantheon SSH key by default.
+#
+# Commands will be run relative to your webroot.
+#
+drush:
+  service: drush
+  description: Run a drush command on your codebase
+  mapping: <config.syncthing.codeDir>:/var/www/html
+
+#
+# Adds a php cli command to your pantheon app.
+#
+# Commands will be run relative to your webroot.
+#
+php:
+  service: drush
+  description: Run a php cli command
+  mapping: <config.syncthing.codeDir>:/var/www/html
+
+#
+# Adds a composer command to your pantheon app.
+#
+# Commands will be run relative to your webroot.
+#
+composer:
+  service: drush
+  description: Run a composer cli command
+  mapping: <config.syncthing.codeDir>:/var/www/html
+
+#
+# Adds a node command to your pantheon app.
+#
+# Commands will be run relative to your webroot.
+#
+node:
+  service: cli
+  entrypoint: node
+  description: Run a node command
+  mapping: <config.syncthing.codeDir>:/var/www/html
+
+#
+# Adds a npm command to your pantheon app.
+#
+# Commands will be run relative to your webroot.
+#
+npm:
+  service: cli
+  entrypoint: npm
+  description: Run a npm command
+  mapping: <config.syncthing.codeDir>:/var/www/html
+
+#
+# Adds a grunt command to your pantheon app.
+#
+# Commands will be run relative to your webroot.
+#
+grunt:
+  service: cli
+  entrypoint: grunt
+  description: Run a grunt command
+  mapping: <config.syncthing.codeDir>:/var/www/html
+
+#
+# Adds a gulp command to your pantheon app.
+#
+# Commands will be run relative to your webroot.
+#
+gulp:
+  service: cli
+  entrypoint: gulp
+  description: Run a gulp command
+  mapping: <config.syncthing.codeDir>:/var/www/html
+
+#
+# Adds a bower command to your pantheon app.
+#
+# Commands will be run relative to your webroot.
+#
+bower:
+  service: cli
+  entrypoint: bower
+  description: Run a bower command
+  mapping: <config.syncthing.codeDir>:/var/www/html

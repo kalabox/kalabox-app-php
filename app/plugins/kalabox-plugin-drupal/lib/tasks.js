@@ -156,7 +156,7 @@ module.exports = function(kbox) {
             console.log(JSON.stringify(info, null, 2));
           }
           else {
-            kbox.core.log.warn('App is not running');
+            return kbox.core.log.warn('App is not running');
           }
         })
 

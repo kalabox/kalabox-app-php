@@ -4,6 +4,7 @@ data:
     - $KALABOX_APP_ROOT_BIND/files:/media:rw
     - /var/lib/mysql
     - /var/www/html
+  command: chown 33:33 -Rv /var/www/html
 appserver:
   image: drupal:$KALABOX_APP_DRUPAL_VERSION
   volumes_from:

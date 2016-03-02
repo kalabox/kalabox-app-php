@@ -68,7 +68,7 @@ pluginconfig:
   # and also load tasks that live in the cli.yml file. Check out both
   # those files for more options.
   #
-  #cli: on
+  cli: on
 
   #
   # sharing plugin config.
@@ -133,4 +133,5 @@ pluginconfig:
   #     - secure: [true|false] - http vs https.
   #
   drupal:
-    version: 7
+    version: 8
+    drush: 8
