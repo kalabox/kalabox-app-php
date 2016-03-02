@@ -1,9 +1,7 @@
 language: node_js
 sudo: false
 node_js:
-- '0.12'
-- '0.11'
-- '0.10'
+- '4.2'
 before_install:
 - cp ci/travis-ci.sh $HOME/
 - chmod +x $HOME/travis-ci.sh
@@ -31,8 +29,8 @@ notifications:
   - chat.freenode.net#kalabox
   email:
     recipients:
-    - mike@kalamuna.com
-    - ben@kalamuna.com
+    - mike@kalabox.io
+    - riley@kalabox.io
     on_success: always
 env:
   global:

@@ -13,6 +13,8 @@ npm-debug.log
 cache
 coverage
 doc
+code
+files
 deploy
 node_modules
 cids

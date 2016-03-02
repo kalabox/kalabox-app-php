@@ -15,7 +15,10 @@ module.exports = function(grunt) {
         src: [
           '*.js',
           'lib/*.js',
-          'scripts/*.js'
+          'scripts/*.js',
+          'app/scripts/*.js',
+          'app/plugins/*/*.js',
+          'app/plugins/*/lib/*.js'
         ]
       }
     },
@@ -23,11 +26,14 @@ module.exports = function(grunt) {
     // This handles automatic version bumping in travis
     bump: {
       options: {
-        files: ['package.json'],
+        files: [
+          'package.json',
+          'app/package.json'
+        ],
         updateConfigs: [],
         commit: true,
         commitMessage: 'Release v%VERSION%',
-        commitFiles: ['package.json', 'bower.json'],
+        commitFiles: ['package.json', 'app/package.json'],
         createTag: true,
         tagName: 'v%VERSION%',
         tagMessage: 'Version %VERSION%',
@@ -41,10 +47,10 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc',
         reporter: require('jshint-stylish')
       },
-      all: ['Gruntfile.js', '<%= files.js.src %>']
+      all: ['Gruntfile.js', '<%= files.js.src %>', 'index.js']
     },
     jscs: {
-      src: ['Gruntfile.js', '<%= files.js.src %>'],
+      src: ['Gruntfile.js', '<%= files.js.src %>', 'index.js'],
       options: {
         config: '.jscsrc'
       }
