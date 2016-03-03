@@ -29,25 +29,3 @@ cli:
   working_dir: $KALABOX_CLI_WORKING_DIR
   stdin_open: true
   tty: true
-
-#
-# Drupal tooling.
-#
-# This contains additional drupal specific tooling options such as
-# drush
-#
-drush:
-  image: drush/drush:$KALABOX_APP_DRUPAL_CONFIG_DRUSH
-  volumes:
-    - $KALABOX_ENGINE_HOME:/user
-    - $KALABOX_APP_ROOT:/src
-  volumes_from:
-    - data
-  environment:
-    MYSQL_HOST: database
-    TERM: xterm-color
-  links:
-    - db:database
-  working_dir: $KALABOX_CLI_WORKING_DIR
-  stdin_open: true
-  tty: true

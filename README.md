@@ -1,8 +1,9 @@
-# Kalabox Drupal App
+# Kalabox Php App
 
 ## Overview
 
-By default Kalabox can create simple Drupal 7/8 apps.
+By default Kalabox can create apps to run various PHP things like Wordpress
+or Drupal.
 
 Here are some of the things you can do
 

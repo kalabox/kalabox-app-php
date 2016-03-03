@@ -2,7 +2,7 @@
 
 COMMAND=$1
 EXIT_VALUE=0
-PLUGIN_REPO="kalabox/kalabox-app-drupal"
+PLUGIN_REPO="kalabox/kalabox-app-php"
 
 ##
 # SCRIPT COMMANDS
@@ -31,7 +31,6 @@ before-install() {
 
 # before-script
 #
-# Setup Drupal to run the tests.
 #
 before-script() {
   # Global install some npm

@@ -83,14 +83,17 @@ module.exports = function(kbox) {
             // @todo: get engine ip from provider.getIp()
             if (name === 'db') {
 
+              // Get framework
+              var framework = app.config.pluginconfig.php.framework;
+
               // Get port from inspect data
               var portInfo = _.get(data, 'NetworkSettings.Ports.3306/tcp');
 
               // Build a creds array
               serviceSummary.credentials = {
-                database: 'drupal',
-                user: 'drupal',
-                password: 'drupal',
+                database: framework,
+                user: framework,
+                password: framework,
                 host: '10.13.37.100',
                 port: portInfo[0].HostPort
               };

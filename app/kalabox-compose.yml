@@ -49,14 +49,17 @@ data:
 #
 #
 appserver:
-  image: drupal:$KALABOX_APP_DRUPAL_CONFIG_VERSION
+  image: $KALABOX_APP_PHP_CONFIG_FRAMEWORK:$KALABOX_APP_PHP_CONFIG_VERSION
   hostname: $KALABOX_APP_CONFIG_NAME.$KALABOX_APP_CONFIG_DOMAIN
   volumes:
     - $KALABOX_APP_ROOT_BIND/config/apache/apache2-foreground:/usr/local/bin/apache2-foreground
+  environment:
+    FRAMEWORK: $KALABOX_APP_PHP_CONFIG_FRAMEWORK
   volumes_from:
     - data
   links:
     - db:database
+    - db:mysql
   ports:
     - "80"
 
@@ -70,7 +73,7 @@ db:
   ports:
     - "3306"
   environment:
-    MYSQL_USER: drupal
-    MYSQL_PASSWORD: drupal
+    MYSQL_USER: $KALABOX_APP_PHP_CONFIG_FRAMEWORK
+    MYSQL_PASSWORD: $KALABOX_APP_PHP_CONFIG_FRAMEWORK
     MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-    MYSQL_DATABASE: drupal
+    MYSQL_DATABASE: $KALABOX_APP_PHP_CONFIG_FRAMEWORK
