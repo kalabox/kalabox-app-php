@@ -41,10 +41,10 @@
 data:
   image: busybox
   volumes:
-    - $KALABOX_APP_ROOT_BIND/files:/media:rw
     - /var/lib/mysql
     - /var/www/html
-  command: chown 33:33 -Rv /var/www/html
+    - $KALABOX_APP_ROOT_BIND/files:/media
+  command: chown 33:33 /var/www/html
 
 #
 # This defines a Pantheon appserver.
@@ -65,6 +65,7 @@ data:
 #
 appserver:
   image: drupal:$KALABOX_APP_DRUPAL_CONFIG_VERSION
+  hostname: $KALABOX_APP_CONFIG_NAME.$KALABOX_APP_CONFIG_DOMAIN
   volumes_from:
     - data
   links:

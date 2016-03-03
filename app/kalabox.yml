@@ -133,5 +133,5 @@ pluginconfig:
   #     - secure: [true|false] - http vs https.
   #
   drupal:
-    version: 8
-    drush: 8
+    version: '8'
+    drush: '8'
