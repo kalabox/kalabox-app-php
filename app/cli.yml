@@ -84,8 +84,8 @@ terminal:
 # Commands will be run relative to your webroot.
 #
 mysql:
-  service: appserver
-  precmdopts: -udrupal
+  service: drush
+  precmdopts: -uroot
   entrypoint: mysql
   description: Drop into a mysql shell
   mapping: <config.syncthing.codeDir>:/var/www/html

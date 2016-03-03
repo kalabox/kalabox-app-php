@@ -31,14 +31,10 @@ cli:
   tty: true
 
 #
-# Basic drush tooling.
+# Drupal tooling.
 #
-
-#
-# Pantheon tooling.
-#
-# This contains additional Pantheon specific tooling options such as
-# drush, wp-cli and terminus.
+# This contains additional drupal specific tooling options such as
+# drush
 #
 drush:
   image: drush/drush:$KALABOX_APP_DRUPAL_CONFIG_DRUSH
@@ -48,6 +44,7 @@ drush:
   volumes_from:
     - data
   environment:
+    MYSQL_HOST: database
     TERM: xterm-color
   links:
     - db:database
