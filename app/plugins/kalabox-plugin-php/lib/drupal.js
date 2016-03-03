@@ -3,6 +3,9 @@
 
 module.exports = function(kbox, app) {
 
+  // Node modules
+  var path = require('path');
+
   /*
    * Helper to get a appserver run def template
    */
@@ -100,6 +103,34 @@ module.exports = function(kbox, app) {
 
     // Finish up
     .nodeify(done);
+
+  });
+
+  /*
+   * Add drupal specific CLI containers
+   */
+  kbox.core.events.on('cli-add-composefiles', function(composeFiles, done) {
+
+    // Add drupal cli containers
+    var drupalComp = path.resolve(__dirname, '..', 'cli', 'drupal-compose.yml');
+    composeFiles.push(drupalComp);
+
+    // Finish up
+    done();
+
+  });
+
+  /*
+   * Add drupal specific CLI tasks
+   */
+  kbox.core.events.on('cli-add-taskfiles', function(taskFiles, done) {
+
+    // Add drupal specific tasks
+    var drupalCli = path.resolve(__dirname, '..', 'cli', 'drupal-cli.yml');
+    taskFiles.push(drupalCli);
+
+    // Finish up
+    done();
 
   });
 
