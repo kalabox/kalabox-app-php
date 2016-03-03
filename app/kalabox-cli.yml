@@ -37,7 +37,7 @@ cli:
 # drush
 #
 drush:
-  image: drush/drush:$KALABOX_APP_DRUPAL_CONFIG_DRUSH
+  image: drush/drush:8
   volumes:
     - $KALABOX_ENGINE_HOME:/user
     - $KALABOX_APP_ROOT:/src

@@ -10,8 +10,8 @@
 # This is the name you choose during `kbox create drupal7/8`. Changing the
 # name or the type is generally dark and full of peril.
 #
-name: drupal
-type: drupal
+name: php
+type: php
 
 #
 # This is an array of the plugins that a Kalabox app implements. By default
@@ -39,7 +39,7 @@ type: drupal
 #     - my-wicked-awesome-plugin
 #
 plugins:
-  - kalabox-plugin-drupal
+  - kalabox-plugin-php
 
 
 #
@@ -92,6 +92,7 @@ pluginconfig:
     ignore:
       - "sites/default/files"
       - "!*modules*"
+      - "wp-content/uploads"
 
   #
   # services plugin config.
@@ -115,21 +116,8 @@ pluginconfig:
         default: true
 
   #
-  # drupal plugin config.
+  # Php plugin config.
   #
-  # The services plugin provides domain resolution and proxying for specific
-  # services. This will use the global config "domain" key as the DNS suffix.
-  # By default this is 'kbox'.
-  #
-  # Options:
-  #   Objects keyed by service name containing a list of proxy objects.
-  #
-  #   Proxy Object:
-  #     - port: [port/protocal] - The exposed service port and protocol
-  #     - hostname: [string] - the hostname in HOSTNAME.appname.domain
-  #     - default: [true|false] - will use appname.domain as the hostname
-  #     - secure: [true|false] - http vs https.
-  #
-  drupal:
+  php:
+    framework: 'drupal'
     version: '8'
-    drush: '8'

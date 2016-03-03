@@ -5,8 +5,16 @@ set -e
 rm -f /var/run/apache2/apache2.pid
 
 # Do this so our mounted VB volumes work
+echo "Remapping apache permissions for VB sharing compat..."
 usermod -u 1000 www-data
 usermod -G staff www-data
 chown -Rf www-data:www-data /var/www/html
+
+# Create symlink here on wordpress because of how
+# wordpress is extracted on runtime instead of on build
+if [ $FRAMEWORK == "wordpress" ] && [ ! -f "/var/www/html/wp-content/uploads" ]; then
+  echo "Symlinking WP uploads to /media"
+  ln -nsf /media /var/www/html/wp-content/uploads
+fi
 
 exec apache2 -DFOREGROUND
