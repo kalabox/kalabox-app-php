@@ -13,10 +13,8 @@ npm-debug.log
 cache
 coverage
 doc
-code
-files
 deploy
-node_modules
+node_modules/*
 cids
 .boot2docker
 built

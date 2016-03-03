@@ -1,7 +1,7 @@
 #
-# Kalabox Pantheon compose file
+# Kalabox Drupal compose file
 #
-# This contains the core service definitions for Pantheon-on-Kalabox. This
+# This contains the core service definitions to run Drupal on Kalabox. This
 # is a docker-compose file so please check out the compose file documentation
 # over at https://docs.docker.com/compose/compose-file/.
 #
@@ -25,46 +25,33 @@
 #
 
 #
-# This defines a data container to share common Pantheon app assets such as:
+# This defines a data container to share common drupal app assets such as:
 #
 #   1. /media - Static assets like images and compiled css, Your files/wp-uploads
 #               directory is symlinked here
 #
-#   2. /certs - Shared service certs
+#   3. /var/lib/mysql - MariaDB databases to preserve data on rebuilds
 #
-#   3. /sql - MariaDB databases to preserve data on rebuilds
-#
-#   4. /code - Your applications codebase, also where you shared code lives
-#
-#   5. /backups - Backups that are downloaded from Pantheon
+#   4. /var/www/html - Your applications codebase, also where you shared code lives
 #
 data:
   image: busybox
   volumes:
-    - $KALABOX_APP_ROOT_BIND/files:/media:rw
     - /var/lib/mysql
     - /var/www/html
-  command: chown 33:33 -Rv /var/www/html
+    - $KALABOX_APP_ROOT_BIND/files:/media
+  command: chown 33:33 /var/www/html
 
 #
-# This defines a Pantheon appserver.
+# This defines a basic Drupal appserver.
 #
-# We are currently running the same services as the Pantheon appserver with
-# the current exception of apache tika.
+# The $KALABOX_APP_DRUPAL_CONFIG_VERSION var should contain the
+# appropriate major version of drupal
 #
-# We also populate this service with similar environmental variables to what
-# you would find on the pantheon appserver so you can make use of things
-# like:
-#
-#   PRESSFLOW_SETTINGS
-#   PANTHEON_ENVIRONMENT
-#   CACHE_HOST
-#
-# Check your services config in kalabox.yml on how to access this directly
-# instead of going through the edge service.
 #
 appserver:
   image: drupal:$KALABOX_APP_DRUPAL_CONFIG_VERSION
+  hostname: $KALABOX_APP_CONFIG_NAME.$KALABOX_APP_CONFIG_DOMAIN
   volumes_from:
     - data
   links:
@@ -73,7 +60,7 @@ appserver:
     - "80"
 
 #
-# This defines a Pantheon database server.
+# This defines a basic database server.
 #
 db:
   image: mysql
@@ -84,5 +71,5 @@ db:
   environment:
     MYSQL_USER: drupal
     MYSQL_PASSWORD: drupal
-    MYSQL_ROOT_PASSWORD: drupal
+    MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     MYSQL_DATABASE: drupal
