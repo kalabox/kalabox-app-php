@@ -8,8 +8,7 @@
 # This is a small alpine linux container that contains some basic and common
 # cli tools like git, rsync and bash.
 #
-# It shares your entire user directory in at /usr. It also uses your Pantheon
-# keys and username for its git config.
+# It shares your entire user directory in at /user.
 #
 cli:
   image: kalabox/cli:$KALABOX_IMG_VERSION
