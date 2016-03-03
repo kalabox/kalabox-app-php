@@ -1,0 +1,12 @@
+#!/bin/bash
+set -e
+
+# Apache gets grumpy about PID files pre-existing
+rm -f /var/run/apache2/apache2.pid
+
+# Do this so our mounted VB volumes work
+usermod -u 1000 www-data
+usermod -G staff www-data
+chown -Rf www-data:www-data /var/www/html
+
+exec apache2 -DFOREGROUND

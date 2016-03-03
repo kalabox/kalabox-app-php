@@ -100,7 +100,7 @@ module.exports = function(kbox) {
         chownDrupal.opts.entrypoint = 'chown';
         chownDrupal.opts.cmd = [
           '-R',
-          'www-data:www-data',
+          '1000:50',
           'sites'
         ];
         return kbox.engine.run(chownDrupal);
