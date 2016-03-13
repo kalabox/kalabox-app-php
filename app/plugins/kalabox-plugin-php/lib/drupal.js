@@ -5,6 +5,8 @@ module.exports = function(kbox, app) {
 
   // Node modules
   var path = require('path');
+  var id = kbox.core.deps.get('globalConfig').engineId;
+  var group = kbox.core.deps.get('globalConfig').engineGroup;
 
   /*
    * Helper to get a appserver run def template
@@ -83,7 +85,7 @@ module.exports = function(kbox, app) {
       chownDrupal.opts.entrypoint = 'chown';
       chownDrupal.opts.cmd = [
         '-R',
-        '1000:50',
+        [id, group].join(':'),
         '/var/www/html'
       ];
       return kbox.engine.run(chownDrupal);

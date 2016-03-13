@@ -3,6 +3,9 @@
 
 module.exports = function(kbox, app) {
 
+  var id = kbox.core.deps.get('globalConfig').engineId;
+  var group = kbox.core.deps.get('globalConfig').engineGroup;
+
   /*
    * Helper to get a appserver run def template
    */
@@ -26,7 +29,7 @@ module.exports = function(kbox, app) {
     chownDrupal.opts.entrypoint = 'chown';
     chownDrupal.opts.cmd = [
       '-R',
-      '1000:50',
+      [id, group].join(':'),
       '/usr/src/wordpress'
     ];
     return kbox.engine.run(chownDrupal)

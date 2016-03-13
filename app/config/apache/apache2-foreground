@@ -2,7 +2,7 @@
 set -e
 
 : ${KALABOX_UID:='1000'}
-: ${KALABOX_GID:='staff'}
+: ${KALABOX_GROUP:='staff'}
 
 # Apache gets grumpy about PID files pre-existing
 rm -f /var/run/apache2/apache2.pid

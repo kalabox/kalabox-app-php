@@ -55,6 +55,8 @@ appserver:
     - $KALABOX_APP_ROOT_BIND/config/apache/apache2-foreground:/usr/local/bin/apache2-foreground
   environment:
     FRAMEWORK: $KALABOX_APP_PHP_CONFIG_FRAMEWORK
+    KALABOX_UID: $KALABOX_ENGINE_ID
+    KALABOX_GROUP: $KALABOX_ENGINE_GROUP
   volumes_from:
     - data
   links:
