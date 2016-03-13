@@ -56,7 +56,7 @@ git:
   stripfirst: true
   entrypoint: kgit
   description: Run a git command on your codebase
-  mapping: <config.syncthing.codeDir>:/var/www/html
+  mapping: <config.sharing.codeDir>:/var/www/html
 
 #
 # Adds a rsync command to your Pantheon app.
@@ -87,7 +87,7 @@ node:
   service: cli
   entrypoint: node
   description: Run a node command
-  mapping: <config.syncthing.codeDir>:/var/www/html
+  mapping: <config.sharing.codeDir>:/var/www/html
 
 #
 # Adds a npm command to your pantheon app.
@@ -98,7 +98,7 @@ npm:
   service: cli
   entrypoint: npm
   description: Run a npm command
-  mapping: <config.syncthing.codeDir>:/var/www/html
+  mapping: <config.sharing.codeDir>:/var/www/html
 
 #
 # Adds a grunt command to your pantheon app.
@@ -109,7 +109,7 @@ grunt:
   service: cli
   entrypoint: grunt
   description: Run a grunt command
-  mapping: <config.syncthing.codeDir>:/var/www/html
+  mapping: <config.sharing.codeDir>:/var/www/html
 
 #
 # Adds a gulp command to your pantheon app.
@@ -120,7 +120,7 @@ gulp:
   service: cli
   entrypoint: gulp
   description: Run a gulp command
-  mapping: <config.syncthing.codeDir>:/var/www/html
+  mapping: <config.sharing.codeDir>:/var/www/html
 
 #
 # Adds a bower command to your pantheon app.
@@ -131,4 +131,4 @@ bower:
   service: cli
   entrypoint: bower
   description: Run a bower command
-  mapping: <config.syncthing.codeDir>:/var/www/html
+  mapping: <config.sharing.codeDir>:/var/www/html
