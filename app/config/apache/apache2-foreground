@@ -1,14 +1,18 @@
 #!/bin/bash
 set -e
 
+: ${KALABOX_UID:='1000'}
+: ${KALABOX_GID:='staff'}
+
 # Apache gets grumpy about PID files pre-existing
 rm -f /var/run/apache2/apache2.pid
 
 # Do this so our mounted VB volumes work
 echo "Remapping apache permissions for VB sharing compat..."
-usermod -u 1000 www-data
-usermod -G staff www-data
+usermod -u $KALABOX_UID www-data
+usermod -G $KALABOX_GID www-data
 chown -Rf www-data:www-data /var/www/html
+chown -Rf www-data:www-data /media
 
 # Create symlink here on wordpress because of how
 # wordpress is extracted on runtime instead of on build

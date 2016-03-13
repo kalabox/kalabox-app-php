@@ -84,7 +84,7 @@ module.exports = function(kbox, app) {
       chownDrupal.opts.cmd = [
         '-R',
         '1000:50',
-        'sites'
+        '/var/www/html'
       ];
       return kbox.engine.run(chownDrupal);
     })
