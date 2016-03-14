@@ -56,7 +56,7 @@ appserver:
   environment:
     FRAMEWORK: $KALABOX_APP_PHP_CONFIG_FRAMEWORK
     KALABOX_UID: $KALABOX_ENGINE_ID
-    KALABOX_GROUP: $KALABOX_ENGINE_GROUP
+    KALABOX_GID: $KALABOX_ENGINE_GID
   volumes_from:
     - data
   links:
