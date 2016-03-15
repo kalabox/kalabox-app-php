@@ -1,16 +1,18 @@
 #!/bin/bash
 set -e
 
+# Set defaults
 : ${KALABOX_UID:='1000'}
-: ${KALABOX_GROUP:='staff'}
+: ${KALABOX_GID:='50'}
 
 # Apache gets grumpy about PID files pre-existing
 rm -f /var/run/apache2/apache2.pid
 
 # Do this so our mounted VB volumes work
+# @todo: silent fail perm setting?
 echo "Remapping apache permissions for VB sharing compat..."
-usermod -u $KALABOX_UID www-data
-usermod -G $KALABOX_GID www-data
+usermod -u "$KALABOX_UID" www-data
+groupmod -g "$KALABOX_GID" www-data || usermod -G staff www-data
 chown -Rf www-data:www-data /var/www/html
 chown -Rf www-data:www-data /media
 
