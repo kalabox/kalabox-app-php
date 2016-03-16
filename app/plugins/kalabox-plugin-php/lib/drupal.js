@@ -93,8 +93,6 @@ module.exports = function(kbox, app) {
 
     // Chown sites directory
     .then(function() {
-      console.log(id);
-      console.log(group);
       var chownDrupal = getAppRunner();
       chownDrupal.opts.entrypoint = 'chown';
       chownDrupal.opts.cmd = [

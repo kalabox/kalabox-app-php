@@ -22,6 +22,7 @@ mysql:
 #
 drush:
   service: drush
+  entrypoint: usermap
   description: Run a drush command on your codebase
   mapping: <config.sharing.codeDir>:/var/www/html
 
@@ -32,6 +33,7 @@ drush:
 #
 php:
   service: drush
+  entrypoint: usermap
   description: Run a php cli command
   mapping: <config.sharing.codeDir>:/var/www/html
 
@@ -42,5 +44,6 @@ php:
 #
 composer:
   service: drush
+  entrypoint: usermap
   description: Run a composer cli command
   mapping: <config.sharing.codeDir>:/var/www/html
