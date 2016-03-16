@@ -6,7 +6,7 @@ module.exports = function(kbox, app) {
   // Node modules
   var path = require('path');
   var id = kbox.core.deps.get('globalConfig').engineId;
-  var group = kbox.core.deps.get('globalConfig').engineGroup;
+  var group = kbox.core.deps.get('globalConfig').engineGid;
 
   /*
    * Helper to get a appserver run def template
@@ -79,18 +79,6 @@ module.exports = function(kbox, app) {
       return kbox.engine.run(untarDrupal);
     })
 
-    // Chown sites directory
-    .then(function() {
-      var chownDrupal = getAppRunner();
-      chownDrupal.opts.entrypoint = 'chown';
-      chownDrupal.opts.cmd = [
-        '-R',
-        [id, group].join(':'),
-        '/var/www/html'
-      ];
-      return kbox.engine.run(chownDrupal);
-    })
-
     // Symlink to media
     .then(function() {
       var linkRun = getAppRunner();
@@ -101,6 +89,20 @@ module.exports = function(kbox, app) {
         '/var/www/html/sites/default/files'
       ];
       return kbox.engine.run(linkRun);
+    })
+
+    // Chown sites directory
+    .then(function() {
+      console.log(id);
+      console.log(group);
+      var chownDrupal = getAppRunner();
+      chownDrupal.opts.entrypoint = 'chown';
+      chownDrupal.opts.cmd = [
+        '-R',
+        [id, group].join(':'),
+        '/var/www/html'
+      ];
+      return kbox.engine.run(chownDrupal);
     })
 
     // Finish up

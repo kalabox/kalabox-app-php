@@ -4,7 +4,7 @@
 module.exports = function(kbox, app) {
 
   var id = kbox.core.deps.get('globalConfig').engineId;
-  var group = kbox.core.deps.get('globalConfig').engineGroup;
+  var group = kbox.core.deps.get('globalConfig').engineGid;
 
   /*
    * Helper to get a appserver run def template
