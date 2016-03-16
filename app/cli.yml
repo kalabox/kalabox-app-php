@@ -53,8 +53,6 @@
 #
 git:
   service: cli
-  stripfirst: true
-  entrypoint: kgit
   description: Run a git command on your codebase
   mapping: <config.sharing.codeDir>:/var/www/html
 
@@ -65,7 +63,6 @@ git:
 #
 rsync:
   service: cli
-  entrypoint: rsync
   description: Run a rsync command on your files directory
   mapping: files:/media
 
@@ -85,7 +82,6 @@ terminal:
 #
 node:
   service: cli
-  entrypoint: node
   description: Run a node command
   mapping: <config.sharing.codeDir>:/var/www/html
 
@@ -96,7 +92,6 @@ node:
 #
 npm:
   service: cli
-  entrypoint: npm
   description: Run a npm command
   mapping: <config.sharing.codeDir>:/var/www/html
 
@@ -107,7 +102,6 @@ npm:
 #
 grunt:
   service: cli
-  entrypoint: grunt
   description: Run a grunt command
   mapping: <config.sharing.codeDir>:/var/www/html
 
@@ -118,7 +112,6 @@ grunt:
 #
 gulp:
   service: cli
-  entrypoint: gulp
   description: Run a gulp command
   mapping: <config.sharing.codeDir>:/var/www/html
 
@@ -129,6 +122,5 @@ gulp:
 #
 bower:
   service: cli
-  entrypoint: bower
   description: Run a bower command
   mapping: <config.sharing.codeDir>:/var/www/html
