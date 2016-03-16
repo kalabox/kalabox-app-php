@@ -1,6 +1,6 @@
 {
   "name": "php",
-  "version": "0.12.0-alpha.4",
+  "version": "0.12.0-alpha.5",
   "dependencies": {
     "lodash": "^3.9.3"
   }
