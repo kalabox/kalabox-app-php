@@ -90,8 +90,9 @@ pluginconfig:
   sharing:
     share: data:/var/www/html
     ignore:
+      - '!*modules*'
       - "sites/default/files"
-      - "!*modules*"
+      - "files
       - "wp-content/uploads"
 
   #
