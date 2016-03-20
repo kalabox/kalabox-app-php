@@ -92,7 +92,7 @@ pluginconfig:
     ignore:
       - '!*modules*'
       - "sites/default/files"
-      - "files
+      - "files"
       - "wp-content/uploads"
 
   #
