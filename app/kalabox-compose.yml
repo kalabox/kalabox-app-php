@@ -49,7 +49,7 @@ data:
 #
 #
 appserver:
-  image: $KALABOX_APP_PHP_CONFIG_FRAMEWORK:$KALABOX_APP_PHP_CONFIG_VERSION
+  image: $KALABOX_APP_PHP_CONFIG_IMAGE
   hostname: $KALABOX_APP_CONFIG_NAME.$KALABOX_APP_CONFIG_DOMAIN
   volumes:
     - $KALABOX_APP_ROOT_BIND/config/apache/apache2-foreground:/usr/local/bin/apache2-foreground
