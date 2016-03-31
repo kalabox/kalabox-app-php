@@ -1,5 +1,5 @@
 language: node_js
-sudo: false
+sudo: required
 node_js:
 - '4.2'
 before_install:
@@ -38,3 +38,6 @@ deploy:
     tags: true
     repo: kalabox/kalabox-app-php
     branch: v0.12
+env:
+  global:
+    secure: QQZ0ayL4Tedql8rpvGkGeyGQT8MFHkhzRYDqI8F5iFVU7RBZEBBeMKrDRb8IJNssOsIodq4KLedIW/FMcs6Uq1Xm8Vhi9TVNqIZMiCYGtU5ByFgoYRUBgInppiz/Km8YoMBXqjUpOqa05zA72J4I6UlAM0KgdDkC9cIkn1tBPj4=
