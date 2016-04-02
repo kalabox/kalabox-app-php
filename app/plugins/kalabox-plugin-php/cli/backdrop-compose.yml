@@ -1,0 +1,25 @@
+#
+# Backdrop tooling.
+#
+# This contains additional drupal specific tooling options such as
+# drush
+#
+drush:
+  image: drush/drush:backdrop
+  volumes:
+    - $KALABOX_ENGINE_HOME:/user
+    - $KALABOX_APP_ROOT:/src
+    - $KALABOX_APP_ROOT/config/scripts/usermap.sh:/usr/local/bin/usermap
+  volumes_from:
+    - data
+  environment:
+    BACKDROP_SETTINGS: "{\"databases\":{\"default\":{\"default\":{\"host\":\"database\",\"port\":3306,\"username\":\"backdrop\",\"password\":\"backdrop\",\"database\":\"backdrop\",\"driver\":\"mysql\"}}}}"
+    MYSQL_HOST: database
+    TERM: xterm-color
+    KALABOX_UID: $KALABOX_ENGINE_ID
+    KALABOX_GID: $KALABOX_ENGINE_GID
+  links:
+    - db:database
+  working_dir: $KALABOX_CLI_WORKING_DIR
+  stdin_open: true
+  tty: true

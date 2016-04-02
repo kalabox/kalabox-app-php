@@ -4,6 +4,7 @@
 module.exports = function(kbox, app) {
 
   // Node modules
+  var path = require('path');
   var id = kbox.core.deps.get('globalConfig').engineId;
   var group = kbox.core.deps.get('globalConfig').engineGid;
 
@@ -31,8 +32,8 @@ module.exports = function(kbox, app) {
       // Construct our extract definition
       var curlRun = getAppRunner();
       curlRun.opts.entrypoint = ['bash', '-c'];
-      var backdropUrl =
-        'https://github.com/backdrop/backdrop/archive/1.3.4.tar.gz';
+      var backdropUrl = 'https://github.com/backdrop/backdrop/archive/' +
+        '${BACKDROP_VERSION}.tar.gz';
       curlRun.opts.cmd = [
         'curl',
         '-fSL',
@@ -40,8 +41,22 @@ module.exports = function(kbox, app) {
         '-o',
         'backdrop.tar.gz'
       ];
-      // Grab our drupal project
+      // Grab our backdrop project
       return kbox.engine.run(curlRun)
+
+      // Verify MD5 hash
+      .then(function() {
+        var md5Verify = getAppRunner();
+        md5Verify.opts.entrypoint = 'echo';
+        md5Verify.opts.cmd = [
+          '"${BACKDROP_MD5} *backdrop.tar.gz"',
+          '|',
+          'md5sum',
+          '-c',
+          '-'
+        ];
+        return kbox.engine.run(md5Verify);
+      })
 
       // Extract to webroot
       .then(function() {
@@ -111,6 +126,34 @@ module.exports = function(kbox, app) {
       return kbox.Promise.resolve().nodeify(done);
 
     }
+
+  });
+
+  /*
+   * Add drupal specific CLI containers
+   */
+  kbox.core.events.on('cli-add-composefiles', function(composeFiles, done) {
+
+    // Add drupal cli containers
+    var backComp = path.resolve(__dirname, '..', 'cli', 'backdrop-compose.yml');
+    composeFiles.push(backComp);
+
+    // Finish up
+    done();
+
+  });
+
+  /*
+   * Add drupal specific CLI tasks
+   */
+  kbox.core.events.on('cli-add-taskfiles', function(taskFiles, done) {
+
+    // Add drupal specific tasks
+    var backCli = path.resolve(__dirname, '..', 'cli', 'backdrop-cli.yml');
+    taskFiles.push(backCli);
+
+    // Finish up
+    done();
 
   });
 
