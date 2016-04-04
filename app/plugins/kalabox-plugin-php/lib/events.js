@@ -1,7 +1,7 @@
 
 'use strict';
 
-module.exports = function(kbox) {
+module.exports = function(kbox, app) {
 
   // Node modules
   var path = require('path');
@@ -10,60 +10,49 @@ module.exports = function(kbox) {
   // NPM modules
   var _ = require('lodash');
 
-  // Kbox modules
-  var events = kbox.core.events.context('6e086c59-20d2-46b5-84ce-44d2de1f58c6');
-
   /*
    * Add our drupal settings to the ENV and also
    */
-  kbox.whenAppRegistered(function(app) {
 
-    // Only run this if this is a php app.
-    if (app.config.type === 'php') {
+  // Set our drupal stuff into the env
+  var identifier = 'app_php_config';
+  kbox.core.env.setEnvFromObj(app.config.pluginconfig.php, identifier);
 
-      // Set our drupal stuff into the env
-      var identifier = 'app_php_config';
-      kbox.core.env.setEnvFromObj(app.config.pluginconfig.php, identifier);
+  /*
+   * Get framework specific events if applicable
+   */
+  var framework = app.config.pluginconfig.php.framework;
+  var frameworkEvents = path.join(__dirname, framework + '.js');
+  if (fs.existsSync(frameworkEvents)) {
+    require(frameworkEvents)(kbox, app);
+  }
 
-      /*
-       * Get framework specific events if applicable
-       */
-      var framework = app.config.pluginconfig.php.framework;
-      var frameworkEvents = path.join(__dirname, framework + '.js');
-      if (fs.existsSync(frameworkEvents)) {
-        require(frameworkEvents)(kbox, app);
-      }
+  /*
+   * We don't want to uninstall our data container on a rebuild
+   * so remove the data container from here
+   *
+   * NOTE: this is a nifty implementation where we inception some events
+   * to target exactly what we want
+   */
+  app.events.on('pre-rebuild', function() {
 
-      /*
-       * We don't want to uninstall our data container on a rebuild
-       * so remove the data container from here
-       *
-       * NOTE: this is a nifty implementation where we inception some events
-       * to target exactly what we want
-       */
-      events.on('pre-app-rebuild', function(app) {
+    // We want to edit our engine remove things
+    kbox.core.events.on('pre-engine-destroy', function(data) {
 
-        // We want to edit our engine remove things
-        events.on('pre-engine-destroy', function(data) {
+      // Get our services
+      var services = _.flatten(_.map(app.composeCore, function(file)  {
+        return _.keys(kbox.util.yaml.toJson(file));
+      }));
 
-          // Get our services
-          var services = _.flatten(_.map(app.composeCore, function(file)  {
-            return _.keys(kbox.util.yaml.toJson(file));
-          }));
-
-          // Remove the data element
-          var withoutData = _.remove(services, function(service) {
-            return service !== 'data';
-          });
-
-          // Update data to note remove data services on rebuilds
-          data.opts = {services: withoutData};
-
-        });
-
+      // Remove the data element
+      var withoutData = _.remove(services, function(service) {
+        return service !== 'data';
       });
 
-    }
+      // Update data to note remove data services on rebuilds
+      data.opts = {services: withoutData};
+
+    });
 
   });
 
