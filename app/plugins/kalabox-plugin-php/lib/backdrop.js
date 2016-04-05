@@ -24,108 +24,98 @@ module.exports = function(kbox, app) {
   /*
    * Drupal post-create setup function
    */
-  kbox.core.events.on('post-create-app', function(app, done) {
+  app.events.on('post-create', function(done) {
 
-    // Only run when app type is php.
-    if (app.config.type === 'php') {
+    // Construct our extract definition
+    var curlRun = getAppRunner();
+    curlRun.opts.entrypoint = ['bash', '-c'];
+    var backdropUrl = 'https://github.com/backdrop/backdrop/archive/' +
+      '${BACKDROP_VERSION}.tar.gz';
+    curlRun.opts.cmd = [
+      'curl',
+      '-fSL',
+      backdropUrl,
+      '-o',
+      'backdrop.tar.gz'
+    ];
+    // Grab our backdrop project
+    return kbox.engine.run(curlRun)
 
-      // Construct our extract definition
-      var curlRun = getAppRunner();
-      curlRun.opts.entrypoint = ['bash', '-c'];
-      var backdropUrl = 'https://github.com/backdrop/backdrop/archive/' +
-        '${BACKDROP_VERSION}.tar.gz';
-      curlRun.opts.cmd = [
-        'curl',
-        '-fSL',
-        backdropUrl,
-        '-o',
+    // Verify MD5 hash
+    .then(function() {
+      var md5Verify = getAppRunner();
+      md5Verify.opts.entrypoint = 'echo';
+      md5Verify.opts.cmd = [
+        '"${BACKDROP_MD5} *backdrop.tar.gz"',
+        '|',
+        'md5sum',
+        '-c',
+        '-'
+      ];
+      return kbox.engine.run(md5Verify);
+    })
+
+    // Extract to webroot
+    .then(function() {
+      var untarDrupal = getAppRunner();
+      untarDrupal.opts.entrypoint = 'tar';
+      untarDrupal.opts.cmd = [
+        '-xz',
+        '--strip-components=1',
+        '-f',
         'backdrop.tar.gz'
       ];
-      // Grab our backdrop project
-      return kbox.engine.run(curlRun)
+      return kbox.engine.run(untarDrupal);
+    })
 
-      // Verify MD5 hash
-      .then(function() {
-        var md5Verify = getAppRunner();
-        md5Verify.opts.entrypoint = 'echo';
-        md5Verify.opts.cmd = [
-          '"${BACKDROP_MD5} *backdrop.tar.gz"',
-          '|',
-          'md5sum',
-          '-c',
-          '-'
-        ];
-        return kbox.engine.run(md5Verify);
-      })
+    // Extract to webroot
+    .then(function() {
+      var untarDrupal = getAppRunner();
+      untarDrupal.opts.entrypoint = 'rm';
+      untarDrupal.opts.cmd = [
+        '-f',
+        'backdrop.tar.gz'
+      ];
+      return kbox.engine.run(untarDrupal);
+    })
 
-      // Extract to webroot
-      .then(function() {
-        var untarDrupal = getAppRunner();
-        untarDrupal.opts.entrypoint = 'tar';
-        untarDrupal.opts.cmd = [
-          '-xz',
-          '--strip-components=1',
-          '-f',
-          'backdrop.tar.gz'
-        ];
-        return kbox.engine.run(untarDrupal);
-      })
+    // Remove files
+    .then(function() {
+      var untarDrupal = getAppRunner();
+      untarDrupal.opts.entrypoint = 'rm';
+      untarDrupal.opts.cmd = [
+        '-rf',
+        '/var/www/html/files'
+      ];
+      return kbox.engine.run(untarDrupal);
+    })
 
-      // Extract to webroot
-      .then(function() {
-        var untarDrupal = getAppRunner();
-        untarDrupal.opts.entrypoint = 'rm';
-        untarDrupal.opts.cmd = [
-          '-f',
-          'backdrop.tar.gz'
-        ];
-        return kbox.engine.run(untarDrupal);
-      })
+    // Symlink to media
+    .then(function() {
+      var linkRun = getAppRunner();
+      linkRun.opts.entrypoint = 'ln';
+      linkRun.opts.cmd = [
+        '-nsf',
+        '/media',
+        '/var/www/html/files'
+      ];
+      return kbox.engine.run(linkRun);
+    })
 
-      // Remove files
-      .then(function() {
-        var untarDrupal = getAppRunner();
-        untarDrupal.opts.entrypoint = 'rm';
-        untarDrupal.opts.cmd = [
-          '-rf',
-          '/var/www/html/files'
-        ];
-        return kbox.engine.run(untarDrupal);
-      })
+    // Chown sites directory
+    .then(function() {
+      var chownDrupal = getAppRunner();
+      chownDrupal.opts.entrypoint = 'chown';
+      chownDrupal.opts.cmd = [
+        '-R',
+        [id, group].join(':'),
+        '/var/www/html'
+      ];
+      return kbox.engine.run(chownDrupal);
+    })
 
-      // Symlink to media
-      .then(function() {
-        var linkRun = getAppRunner();
-        linkRun.opts.entrypoint = 'ln';
-        linkRun.opts.cmd = [
-          '-nsf',
-          '/media',
-          '/var/www/html/files'
-        ];
-        return kbox.engine.run(linkRun);
-      })
-
-      // Chown sites directory
-      .then(function() {
-        var chownDrupal = getAppRunner();
-        chownDrupal.opts.entrypoint = 'chown';
-        chownDrupal.opts.cmd = [
-          '-R',
-          [id, group].join(':'),
-          '/var/www/html'
-        ];
-        return kbox.engine.run(chownDrupal);
-      })
-
-      // Finish up
-      .nodeify(done);
-
-    } else {
-
-      // Made sure to return a promise and respect done callback.
-      return kbox.Promise.resolve().nodeify(done);
-
-    }
+    // Finish up
+    .nodeify(done);
 
   });
 
