@@ -16,7 +16,7 @@ module.exports = function(kbox, app) {
 
   // Set our drupal stuff into the env
   var identifier = 'app_php_config';
-  kbox.core.env.setEnvFromObj(app.config.pluginconfig.php, identifier);
+  app.env.setEnvFromObj(app.config.pluginconfig.php, identifier);
 
   /*
    * Get framework specific events if applicable

@@ -14,7 +14,8 @@ module.exports = function(kbox, app) {
       compose: app.composeCore,
       project: app.name,
       opts: {
-        services: ['appserver']
+        services: ['appserver'],
+        app: app
       }
     };
   };
