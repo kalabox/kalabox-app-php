@@ -123,28 +123,15 @@ module.exports = function(kbox, app) {
   /*
    * Add drupal specific CLI containers
    */
-  kbox.core.events.on('cli-add-composefiles', function(composeFiles, done) {
+  app.events.on('post-app-load', function(app) {
 
-    // Add drupal cli containers
+    // Add backdrop cli containers
     var backComp = path.resolve(__dirname, '..', 'cli', 'backdrop-compose.yml');
-    composeFiles.push(backComp);
+    app.composeCore.push(backComp);
 
-    // Finish up
-    done();
-
-  });
-
-  /*
-   * Add drupal specific CLI tasks
-   */
-  kbox.core.events.on('cli-add-taskfiles', function(taskFiles, done) {
-
-    // Add drupal specific tasks
+    // Add backdrop specific tasks
     var backCli = path.resolve(__dirname, '..', 'cli', 'backdrop-cli.yml');
-    taskFiles.push(backCli);
-
-    // Finish up
-    done();
+    app.taskFiles.push(backCli);
 
   });
 
