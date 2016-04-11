@@ -112,7 +112,7 @@ module.exports = function(kbox, app) {
   /*
    * Add drupal specific CLI containers
    */
-  kbox.core.events.on('post-app-load', function(app) {
+  app.events.on('post-app-load', function(app) {
 
     // Add drupal cli containers
     var drupalComp = path.resolve(__dirname, '..', 'cli', 'drupal-compose.yml');

@@ -123,7 +123,7 @@ module.exports = function(kbox, app) {
   /*
    * Add drupal specific CLI containers
    */
-  kbox.core.events.on('post-app-load', function(app) {
+  app.events.on('post-app-load', function(app) {
 
     // Add backdrop cli containers
     var backComp = path.resolve(__dirname, '..', 'cli', 'backdrop-compose.yml');
