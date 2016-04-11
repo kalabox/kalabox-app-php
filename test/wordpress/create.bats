@@ -99,19 +99,6 @@ setup() {
   stat ./index.php
 }
 
-# Check that we have a Wordpress database.
-@test "Check that we have a Wordpress database." {
-
-  # SKip this test on OSX
-  if [ $ON_OSX == true ]; then
-    skip "This test currently fails on OSX"
-  fi
-
-  # See if we have a drupal7 database
-  $DOCKER exec ${PHP_WORDPRESS_NAME}_appserver_1 mysql -e 'SHOW DATABASES;' | grep wordpress
-
-}
-
 # Check that we have the correct DNS entry
 @test "Check that we have the correct DNS entry." {
   $DOCKER exec kalabox_proxy_1 redis-cli -p 8160 lrange frontend:http://${PHP_WORDPRESS_NAME}.kbox 0 5 | grep 10.13.37.100

@@ -23,7 +23,7 @@ setup() {
   # Version to check
   BOWER_VERSION=1.7
   COMPOSER_VERSION=1.0
-  DRUSH_VERSION=8.0
+  DRUSH_VERSION="This command is not supported yet by Backdrop."
   GIT_VERSION=2.6
   GRUNT_VERSION=0.1
   GULP_VERSION=1.2

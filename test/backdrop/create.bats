@@ -101,20 +101,7 @@ setup() {
 # Check that we have Backdrop code.
 @test "Check that we have Backdrop code." {
   cd $KBOX_APP_DIR/$PHP_BACKDROP_NAME/code
-  stat ./cron.php
-}
-
-# Check that we have a Backdrop database.
-@test "Check that we have a Backdrop database." {
-
-  # SKip this test on OSX
-  if [ $ON_OSX == true ]; then
-    skip "This test currently fails on OSX"
-  fi
-
-  # See if we have a drupal7 database
-  $DOCKER exec ${PHP_BACKDROP_NAME}_appserver_1 mysql -e 'SHOW DATABASES;' | grep backdrop
-
+  stat ./index.php
 }
 
 # Check that we have the correct DNS entry

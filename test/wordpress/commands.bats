@@ -22,14 +22,11 @@ setup() {
 
   # Version to check
   BOWER_VERSION=1.7
-  COMPOSER_VERSION=1.0
   GIT_VERSION=2.6
   GRUNT_VERSION=0.1
   GULP_VERSION=1.2
-  MYSQL_CLIENT_VERSION=14.
   NODE_VERSION=4.4
   NPM_VERSION=2.14
-  PHP_VERSION=5.6
   RSYNC_VERSION=3.1
 }
 
@@ -37,14 +34,11 @@ setup() {
 # Command sanity checks
 #
 #  bower            Run a bower command
-#  composer         Run a composer cli command
 #  git              Run a git command on your codebase
 #  grunt            Run a grunt command
 #  gulp             Run a gulp command
-#  mysql            Drop into a mysql shell
 #  node             Run a node command
 #  npm              Run a npm command
-#  php              Run a php cli command
 #  rsync            Run a rsync command on your files directory
 #  terminal         'ssh' into your appserver
 #
@@ -52,11 +46,6 @@ setup() {
   run $KBOX bower --version
   [ "$status" -eq 0 ]
   [[ $output == *"$BOWER_VERSION"* ]]
-}
-@test "Check that '$KBOX composer' returns the correct major version without an error." {
-  run $KBOX composer --version
-  [ "$status" -eq 0 ]
-  [[ $output == *"$COMPOSER_VERSION"* ]]
 }
 @test "Check that '$KBOX git' returns the correct major version without an error." {
   run $KBOX git --version
@@ -73,11 +62,6 @@ setup() {
   [ "$status" -eq 0 ]
   [[ $output == *"$GULP_VERSION"* ]]
 }
-@test "Check that '$KBOX mysql' returns the correct major version without an error." {
-  run $KBOX mysql --version
-  [ "$status" -eq 0 ]
-  [[ $output == *"$MYSQL_CLIENT_VERSION"* ]]
-}
 @test "Check that '$KBOX node' returns the correct major version without an error." {
   run $KBOX node --version
   [ "$status" -eq 0 ]
@@ -87,11 +71,6 @@ setup() {
   run $KBOX npm --version
   [ "$status" -eq 0 ]
   [[ $output == *"$NPM_VERSION"* ]]
-}
-@test "Check that '$KBOX php' returns the correct major version without an error." {
-  run $KBOX php --version
-  [ "$status" -eq 0 ]
-  [[ $output == *"$PHP_VERSION"* ]]
 }
 @test "Check that '$KBOX rsync' returns the correct major version without an error." {
   run $KBOX rsync --version
