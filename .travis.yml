@@ -40,4 +40,11 @@ deploy:
     branch: v0.12
 env:
   global:
-    secure: QQZ0ayL4Tedql8rpvGkGeyGQT8MFHkhzRYDqI8F5iFVU7RBZEBBeMKrDRb8IJNssOsIodq4KLedIW/FMcs6Uq1Xm8Vhi9TVNqIZMiCYGtU5ByFgoYRUBgInppiz/Km8YoMBXqjUpOqa05zA72J4I6UlAM0KgdDkC9cIkn1tBPj4=
+    - secure: QQZ0ayL4Tedql8rpvGkGeyGQT8MFHkhzRYDqI8F5iFVU7RBZEBBeMKrDRb8IJNssOsIodq4KLedIW/FMcs6Uq1Xm8Vhi9TVNqIZMiCYGtU5ByFgoYRUBgInppiz/Km8YoMBXqjUpOqa05zA72J4I6UlAM0KgdDkC9cIkn1tBPj4=
+    - DOCKER_HOST: tcp://10.13.37.100:2375
+  matrix:
+    - KALABOX_TEST_GROUP=drupal7
+    - KALABOX_TEST_GROUP=drupal8
+    - KALABOX_TEST_GROUP=backdrop
+    - KALABOX_TEST_GROUP=wordpress
+    - KALABOX_TEST_GROUP=common
