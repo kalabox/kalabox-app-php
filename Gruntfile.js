@@ -77,43 +77,19 @@ module.exports = function(grunt) {
       },
       drupal7: {
         options: funcOpts,
-        command: [
-          funcCommand,
-          './test/drupal7/create.bats',
-          './test/drupal7/actions.bats',
-          './test/drupal7/commands.bats',
-          './test/drupal7/finish.bats'
-        ].join(' ')
+        command: funcCommand + ' ./test/drupal7.bats'
       },
       drupal8: {
         options: funcOpts,
-        command: [
-          funcCommand,
-          './test/drupal8/create.bats',
-          './test/drupal8/actions.bats',
-          './test/drupal8/commands.bats',
-          './test/drupal8/finish.bats'
-        ].join(' ')
+        command: funcCommand + ' ./test/drupal8.bats'
       },
       backdrop: {
         options: funcOpts,
-        command: [
-          funcCommand,
-          './test/backdrop/create.bats',
-          './test/backdrop/actions.bats',
-          './test/backdrop/commands.bats',
-          './test/backdrop/finish.bats'
-        ].join(' ')
+        command: funcCommand + ' ./test/backdrop.bats'
       },
       wordpress: {
         options: funcOpts,
-        command: [
-          funcCommand,
-          './test/wordpress/create.bats',
-          './test/wordpress/actions.bats',
-          './test/wordpress/commands.bats',
-          './test/wordpress/finish.bats'
-        ].join(' ')
+        command: funcCommand + ' ./test/wordpress.bats'
       }
     }
 

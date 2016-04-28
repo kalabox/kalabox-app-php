@@ -59,12 +59,6 @@ kbox-retry-build() {
   [ "$status" -eq 0 ]
 }
 
-# Check that we can build the cli image without an error.
-@test "Check that we can build the cli image without an error." {
-  run kbox-retry-build kalabox/$IMAGE stable $PHP_DOCKERFILES_DIR/$IMAGE
-  [ "$status" -eq 0 ]
-}
-
 # Check that we can build the drupal7 image without an error.
 @test "Check that we can build the d7 appserver image without an error." {
   run kbox-retry-build drupal 7 $PHP_DOCKERFILES_DIR/drupal7
