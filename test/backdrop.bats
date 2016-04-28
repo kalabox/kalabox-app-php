@@ -24,9 +24,9 @@ setup() {
   mkdir -p "$KBOX_APP_DIR"
 
   # Versions to check
+  BACKDRUSH_VERSION="This command is not supported yet by Backdrop."
   BOWER_VERSION=1.7
   COMPOSER_VERSION=1.0
-  DRUSH_VERSION="This command is not supported yet by Backdrop."
   GIT_VERSION=2.6
   GRUNT_VERSION=0.1
   GULP_VERSION=1.2
@@ -59,7 +59,7 @@ setup() {
   if [ ! $Backdrop_SITE_EXISTS ]; then
 
     # Create a Backdrop site
-    run $KBOX create drupal7 \
+    run $KBOX create backdrop \
       -- \
       --name $PHP_BACKDROP_NAME \
       --dir $KBOX_APP_DIR \
@@ -234,7 +234,7 @@ setup() {
 @test "Check that '$KBOX drush' returns the correct major version without an error." {
   run $KBOX drush --version
   [ "$status" -eq 0 ]
-  [[ $output == *"$DRUSH_VERSION"* ]]
+  [[ $output == *"$BACKDRUSH_VERSION"* ]]
 }
 
 #

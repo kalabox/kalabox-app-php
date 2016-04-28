@@ -55,7 +55,7 @@ setup() {
   if [ ! $Wordpress_SITE_EXISTS ]; then
 
     # Create a Wordpress site
-    run $KBOX create drupal7 \
+    run $KBOX create wordpress \
       -- \
       --name $PHP_WORDPRESS_NAME \
       --dir $KBOX_APP_DIR \

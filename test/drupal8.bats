@@ -59,7 +59,7 @@ setup() {
   if [ ! $D8_SITE_EXISTS ]; then
 
     # Create a Drupal 8 site
-    run $KBOX create drupal7 \
+    run $KBOX create drupal8 \
       -- \
       --name $PHP_DRUPAL8_NAME \
       --dir $KBOX_APP_DIR \
