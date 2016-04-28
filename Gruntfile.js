@@ -188,11 +188,6 @@ module.exports = function(grunt) {
     'shell:wordpress'
   ]);
 
-  // All Basic tests
-  grunt.registerTask('test:basic', [
-    'shell:install',
-    'shell:images'
-  ]);
   // All Framework tests
   grunt.registerTask('test:frameworks', [
     'shell:drupal7',
@@ -200,10 +195,12 @@ module.exports = function(grunt) {
     'shell:backdrop',
     'shell:wordpress'
   ]);
-  // All Common tests
-  grunt.registerTask('test:common', [
-    'shell:install',
-    'shell:images'
+
+  // All func tests
+  grunt.registerTask('test:func', [
+    'test:install',
+    'test:images',
+    'test:frameworks'
   ]);
 
   /*
