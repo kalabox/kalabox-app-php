@@ -41,73 +41,63 @@ kbox-retry-build() {
 
 }
 
-#
-# Map pull services to repo/image:tag names
-#
-# @todo: eventually we want to build these instead
-#
-# See: https://github.com/kalabox/kalabox/issues/1174
-#
-
-PHP_DRUPAL7_APPSERVER="drupal:7"
-PHP_DRUPAL8_APPSERVER="drupal:8"
-PHP_BACKDROP_APPSERVER="backdrop:1"
-PHP_WORDPRESS_APPSERVER="wordpress:4"
-PHP_DRUPAL_DRUSH="drush/drush:8"
-PHP_BACKDROP_DRUSH="drush/drush:backdrop"
-
 # Check that we can build the busybox image without an error.
-@test "Check that we can pull the data image without an error." {
+@test "Check that we can build the data image without an error." {
   run kbox-retry-build busybox latest $PHP_DOCKERFILES_DIR/data
   [ "$status" -eq 0 ]
 }
 
-# Check that we can pull the db image without an error.
-@test "Check that we can pull the db image without an error." {
+# Check that we can build the db image without an error.
+@test "Check that we can build the db image without an error." {
   run kbox-retry-build mysql latest $PHP_DOCKERFILES_DIR/db
   [ "$status" -eq 0 ]
 }
 
 # Check that we can build the cli image without an error.
 @test "Check that we can build the cli image without an error." {
-  IMAGE=cli
-  run kbox-retry-build kalabox/$IMAGE stable $PANTHEON_DOCKERFILES_DIR/$IMAGE
+  run kbox-retry-build kalabox/cli stable $PHP_DOCKERFILES_DIR/cli
   [ "$status" -eq 0 ]
 }
 
-# Check that we can pull the $PHP_DRUPAL7_APPSERVER image without an error.
-@test "Check that we can pull the d7 appserver image without an error." {
-  run $DOCKER pull $PHP_DRUPAL7_APPSERVER
+# Check that we can build the cli image without an error.
+@test "Check that we can build the cli image without an error." {
+  run kbox-retry-build kalabox/$IMAGE stable $PHP_DOCKERFILES_DIR/$IMAGE
   [ "$status" -eq 0 ]
 }
 
-# Check that we can pull the $PHP_DRUPAL8_APPSERVER image without an error.
-@test "Check that we can pull the d8 appserver image without an error." {
-  run $DOCKER pull $PHP_DRUPAL8_APPSERVER
+# Check that we can build the drupal7 image without an error.
+@test "Check that we can build the d7 appserver image without an error." {
+  run kbox-retry-build drupal 7 $PHP_DOCKERFILES_DIR/drupal7
   [ "$status" -eq 0 ]
 }
 
-# Check that we can pull the $PHP_BACKDROP_APPSERVER image without an error.
-@test "Check that we can pull the backdrop appserver image without an error." {
-  run $DOCKER pull $PHP_BACKDROP_APPSERVER
+# Check that we can build the drupal8 image without an error.
+@test "Check that we can build the d8 appserver image without an error." {
+  run kbox-retry-build drupal 8 $PHP_DOCKERFILES_DIR/drupal8
   [ "$status" -eq 0 ]
 }
 
-# Check that we can pull the $PHP_WORDPRESS_APPSERVER image without an error.
-@test "Check that we can pull the wordpress appserver image without an error." {
-  run $DOCKER pull $PHP_WORDPRESS_APPSERVER
+# Check that we can build the backdrop image without an error.
+@test "Check that we can build the backdrop appserver image without an error." {
+  run kbox-retry-build backdrop 1 $PHP_DOCKERFILES_DIR/backdrop1
   [ "$status" -eq 0 ]
 }
 
-# Check that we can pull the $PHP_DRUPAL_DRUSH image without an error.
-@test "Check that we can pull the drupal drush image without an error." {
-  run $DOCKER pull $PHP_DRUPAL_DRUSH
+# Check that we can build the wordpress image without an error.
+@test "Check that we can build the wordpresss appserver image without an error." {
+  run kbox-retry-build wordpress 4 $PHP_DOCKERFILES_DIR/wordpress4
   [ "$status" -eq 0 ]
 }
 
-# Check that we can pull the $PHP_BACKDROP_DRUSH image without an error.
-@test "Check that we can pull the backdrop drush image without an error." {
-  run $DOCKER pull $PHP_BACKDROP_DRUSH
+# Check that we can build the drush image without an error.
+@test "Check that we can build the drush image without an error." {
+  run kbox-retry-build drush/drush 8 $PHP_DOCKERFILES_DIR/drush
+  [ "$status" -eq 0 ]
+}
+
+# Check that we can build the backdrush image without an error.
+@test "Check that we can build the backdrush image without an error." {
+  run kbox-retry-build drush/drush backdrop $PHP_DOCKERFILES_DIR/backdrush
   [ "$status" -eq 0 ]
 }
 
