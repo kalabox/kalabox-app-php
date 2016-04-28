@@ -15,7 +15,7 @@
 
 # Set some defaults if we are LOCAL
 if [ ! $TRAVIS ]; then
-  : ${TRAVIS_BUILD_DIR:=/Users/pirog/Desktop/work/kalabox-cli/node_modules/kalabox-app-php}
+  : ${TRAVIS_BUILD_DIR:=$(pwd)}
   : ${TRAVIS_COMMIT:=LOCAL}
 fi
 
@@ -48,6 +48,9 @@ fi
 #
 # Php helpers
 #
+
+# Location of our dockerfiles
+PHP_DOCKERFILES_DIR=${TRAVIS_BUILD_DIR}/app/dockerfiles/
 
 # Drupal7
 : ${PHP_DRUPAL7_NAME=seven}

@@ -67,15 +67,6 @@ rsync:
   mapping: files:/media
 
 #
-# This will drop you into a bash shell on your appserver
-#
-terminal:
-  service: appserver
-  stripfirst: true
-  entrypoint: bash
-  description: "'ssh' into your appserver"
-
-#
 # Adds a node command to your pantheon app.
 #
 # Commands will be run relative to your webroot.

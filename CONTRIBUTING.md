@@ -130,13 +130,13 @@ to work. Please check out `test/env.bash` for more details.
 ```
 # Run install tests
 grunt test:install
+
 # Run images tests
 grunt test:images
-# Run both of the above
-grunt test:common
 
 # Run framework tests
 grunt test:frameworks
+
 # Run tests for a specfic framework
 grunt test:drupal7
 grunt test:drupal8
