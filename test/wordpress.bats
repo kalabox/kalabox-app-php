@@ -90,13 +90,6 @@ setup() {
 }
 
 #
-# Check that the terminus container exists and is in the correct state.
-#
-@test "Check that the drush container exists and is in the correct state." {
-  $DOCKER inspect ${PHP_WORDPRESS_NAME}_drush_1 | grep "\"Status\": \"exited\""
-}
-
-#
 # Check that the appserver container exists and is in the correct state.
 #
 @test "Check that the appserver container exists and is in the correct state." {
