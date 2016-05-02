@@ -90,6 +90,10 @@ module.exports = function(grunt) {
       wordpress: {
         options: funcOpts,
         command: funcCommand + ' ./test/wordpress.bats'
+      },
+      drush: {
+        options: funcOpts,
+        command: funcCommand + ' ./test/drush.bats'
       }
     }
 
@@ -164,6 +168,11 @@ module.exports = function(grunt) {
     'shell:wordpress'
   ]);
 
+  // Command tests
+  grunt.registerTask('test:drush', [
+    'shell:drush'
+  ]);
+
   // All Framework tests
   grunt.registerTask('test:frameworks', [
     'shell:drupal7',
@@ -176,7 +185,8 @@ module.exports = function(grunt) {
   grunt.registerTask('test:func', [
     'test:install',
     'test:images',
-    'test:frameworks'
+    'test:frameworks',
+    'test:drush'
   ]);
 
   /*

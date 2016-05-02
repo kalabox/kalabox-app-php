@@ -53,13 +53,13 @@ fi
 PHP_DOCKERFILES_DIR=${TRAVIS_BUILD_DIR}/app/dockerfiles/
 
 # Drupal7
-: ${PHP_DRUPAL7_NAME=seven}
+: ${PHP_DRUPAL7_NAME=php-seven}
 
 # Drupal8
-: ${PHP_DRUPAL8_NAME=eight}
+: ${PHP_DRUPAL8_NAME=php-eight}
 
 # Backdrop
-: ${PHP_BACKDROP_NAME=backdrop}
+: ${PHP_BACKDROP_NAME=php-backdrop}
 
 # Wordpress
-: ${PHP_WORDPRESS_NAME=wordpress}
+: ${PHP_WORDPRESS_NAME=php-wordpress}

@@ -19,6 +19,7 @@ drush:
     - $KALABOX_ENGINE_HOME:/user
     - $KALABOX_APP_ROOT:/src
     - $KALABOX_APP_ROOT/config/scripts/usermap.sh:/usr/local/bin/usermap
+    - $KALABOX_APP_ROOT/config/drush:/root/.drush
   volumes_from:
     - data
   environment:

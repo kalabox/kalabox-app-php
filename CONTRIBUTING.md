@@ -142,6 +142,9 @@ grunt test:drupal7
 grunt test:drupal8
 grunt test:backdrop
 grunt test:wordpress
+
+# Run tests for various commands
+grunt test:drush
 ```
 
 #### Writing Tests
