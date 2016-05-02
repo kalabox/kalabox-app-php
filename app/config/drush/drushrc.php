@@ -257,7 +257,7 @@
  * See: https://github.com/kalabox/kalabox/issues/1297
  *
  */
-#$options['backup-dir'] = '/root/.drush';
+$options['backup-dir'] = '/root/.drush';
 
 /**
  * Command-specific execution options:
