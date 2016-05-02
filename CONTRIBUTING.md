@@ -174,3 +174,4 @@ of things you need to do before your code will be considered merge-worthy.
 
 Please always reference the main Kalabox issue in your commit messages and pull
 requests using the kalabox/kalabox#[issue number] syntax.
+
