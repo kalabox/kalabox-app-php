@@ -19,9 +19,11 @@ drush:
     - $KALABOX_ENGINE_HOME:/user
     - $KALABOX_APP_ROOT:/src
     - $KALABOX_APP_ROOT/config/scripts/usermap.sh:/usr/local/bin/usermap
+    - $KALABOX_APP_ROOT/config/drush:/home/$KALABOX_ENGINE_ID/.drush
   volumes_from:
     - data
   environment:
+    HOME: /home/$KALABOX_ENGINE_ID
     MYSQL_HOST: database
     TERM: xterm-color
     KALABOX_UID: $KALABOX_ENGINE_ID
