@@ -1,5 +1,5 @@
 v0.12.0-beta1
-==================
+=============
 
 #### New Features
 
@@ -7,10 +7,8 @@ v0.12.0-beta1
 
 * Fixed bug where `kbox drush up` was not able to create a backups directory [#1297](https://github.com/kalabox/kalabox/issues/1297)
 
-v0.12.0-alpha8
+v0.12.0-alpha9
 ==================
-
-#### Breaking changes
 
 #### Enhancements
 
@@ -22,4 +20,6 @@ v0.12.0-alpha8
 * Added more Dockerfiles to help extend existing services [#1174](https://github.com/kalabox/kalabox/issues/1174)
 * Updated our development process with new contribution guidelines and standards [#1236](https://github.com/kalabox/kalabox/issues/1236)
 
-#### Bug fixes
+#### Big fixes
+
+* Fixed testing to use new `cgroup-bin` pkg instead of `cgroup-lite`
