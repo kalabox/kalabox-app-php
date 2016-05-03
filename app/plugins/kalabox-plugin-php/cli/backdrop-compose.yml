@@ -26,6 +26,7 @@ drush:
     BACKDROP_SETTINGS: "{\"databases\":{\"default\":{\"default\":{\"host\":\"database\",\"port\":3306,\"username\":\"backdrop\",\"password\":\"backdrop\",\"database\":\"backdrop\",\"driver\":\"mysql\"}}}}"
     MYSQL_HOST: database
     TERM: xterm-color
+    HOSTNAME: $KALABOX_APP_HOSTNAME
     HOME: /home/$KALABOX_ENGINE_ID
     KALABOX_UID: $KALABOX_ENGINE_ID
     KALABOX_GID: $KALABOX_ENGINE_GID
