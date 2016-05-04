@@ -26,6 +26,7 @@ drush:
     HOME: /home/$KALABOX_ENGINE_ID
     MYSQL_HOST: database
     TERM: xterm-color
+    HOSTNAME: $KALABOX_APP_HOSTNAME
     KALABOX_UID: $KALABOX_ENGINE_ID
     KALABOX_GID: $KALABOX_ENGINE_GID
   links:
