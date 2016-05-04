@@ -145,6 +145,7 @@ grunt test:wordpress
 
 # Run tests for various commands
 grunt test:drush
+grunt test:backdrush
 ```
 
 #### Writing Tests

@@ -6,6 +6,7 @@ v0.12.0-beta1
 #### Bug fixes
 
 * Fixed bug where `kbox drush up` was not able to create a backups directory [#1297](https://github.com/kalabox/kalabox/issues/1297)
+* Added test to verify that `kbox drush dl` works on Backdrop [#1284](https://github.com/kalabox/kalabox/issues/1284)
 * Fixed bug where `kbox drush uli` was returning `http://default` instead of the correct hostname. [#1287](https://github.com/kalabox/kalabox/issues/1287)
 
 v0.12.0-alpha9
