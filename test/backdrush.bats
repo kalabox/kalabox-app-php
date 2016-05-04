@@ -63,7 +63,7 @@ setup() {
 
   # Skip until resolution of
   # https://github.com/backdrop-contrib/drush/issues/34
-  skip ("Skip until we have https://github.com/backdrop-contrib/drush/issues/34")
+  skip "Skip until we have https://github.com/backdrop-contrib/drush/issues/34"
 
   # Install a Backdrop site
   run $KBOX drush si --db-url=mysql://root@database/backdrop -y
@@ -87,7 +87,7 @@ setup() {
 
   # Skip until resolution of
   # https://github.com/backdrop-contrib/drush/issues/34
-  skip ("Skip until we have https://github.com/backdrop-contrib/drush/issues/34")
+  skip "Skip until we have https://github.com/backdrop-contrib/drush/issues/34"
 
   # Install a Drupal 7 site
   run $KBOX drush dl webform -y
