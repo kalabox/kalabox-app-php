@@ -94,6 +94,10 @@ module.exports = function(grunt) {
       drush: {
         options: funcOpts,
         command: funcCommand + ' ./test/drush.bats'
+      },
+      backdrush: {
+        options: funcOpts,
+        command: funcCommand + ' ./test/backdrush.bats'
       }
     }
 
@@ -172,6 +176,9 @@ module.exports = function(grunt) {
   grunt.registerTask('test:drush', [
     'shell:drush'
   ]);
+  grunt.registerTask('test:backdrush', [
+    'shell:backdrush'
+  ]);
 
   // All Framework tests
   grunt.registerTask('test:frameworks', [
@@ -186,7 +193,8 @@ module.exports = function(grunt) {
     'test:install',
     'test:images',
     'test:frameworks',
-    'test:drush'
+    'test:drush',
+    'test:backdrush'
   ]);
 
   /*

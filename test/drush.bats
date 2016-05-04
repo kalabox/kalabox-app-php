@@ -55,10 +55,6 @@ setup() {
 }
 
 #
-# Drush command checks
-#
-
-#
 # Do the site install
 #
 @test "Install our Drupal 7 site." {
@@ -69,6 +65,10 @@ setup() {
   [[ $output == *"Installation complete"* ]]
 
 }
+
+#
+# Drush command checks
+#
 
 #
 # Check that `drush up` works
