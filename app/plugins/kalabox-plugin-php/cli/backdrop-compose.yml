@@ -13,7 +13,7 @@ drush:
   # Uncomment this and comment 'image' above if you want to edit your
   # local dockerfile and build from there. This is useful for development
   #
-  # build: ./../../../dockerfiles/backdrush
+  # build: ./dockerfiles/backdrush
 
   volumes:
     - $KALABOX_ENGINE_HOME:/user
