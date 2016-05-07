@@ -1,3 +1,14 @@
+v0.12.0-beta2
+=============
+
+#### New Features
+
+* Refactored app to include connectors previously found in core. [#1223](https://github.com/kalabox/kalabox/issues/1223)
+
+#### Bug Fixes
+
+* Improved deployment [#1223](https://github.com/kalabox/kalabox/issues/1223)
+
 v0.12.0-beta1
 =============
 

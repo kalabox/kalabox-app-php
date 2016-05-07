@@ -29,15 +29,7 @@ notifications:
     - mike@kalabox.io
     - riley@kalabox.io
     on_success: always
-deploy:
-  provider: npm
-  email: mike@kalamuna.com
-  api_key:
-    secure: QlBk3ArzdGYj2K8gekbAbqRdXgFWnJfugQIBypB1kBFMFUoEaS5Hp9/wujeA4ABxNKL/o2UpJn8UjG3dR/ZmugmcUb/maeIwTA8VeMxcjdHdB6ijtVPObNrouH5Rz0RcHbsPvyoKbFJFawpt90ivFERyLba9cD9HVPPZbYsFhCQ=
-  on:
-    tags: true
-    repo: kalabox/kalabox-app-php
-    branch: v0.12
+
 env:
   global:
     - secure: QQZ0ayL4Tedql8rpvGkGeyGQT8MFHkhzRYDqI8F5iFVU7RBZEBBeMKrDRb8IJNssOsIodq4KLedIW/FMcs6Uq1Xm8Vhi9TVNqIZMiCYGtU5ByFgoYRUBgInppiz/Km8YoMBXqjUpOqa05zA72J4I6UlAM0KgdDkC9cIkn1tBPj4=
@@ -49,3 +41,32 @@ env:
     - KALABOX_TEST_GROUP=wordpress
     - KALABOX_TEST_GROUP=drush
     - KALABOX_TEST_GROUP=backdrush
+deploy:
+  - provider: npm
+    email: mike@kalamuna.com
+    api_key:
+      secure: QlBk3ArzdGYj2K8gekbAbqRdXgFWnJfugQIBypB1kBFMFUoEaS5Hp9/wujeA4ABxNKL/o2UpJn8UjG3dR/ZmugmcUb/maeIwTA8VeMxcjdHdB6ijtVPObNrouH5Rz0RcHbsPvyoKbFJFawpt90ivFERyLba9cD9HVPPZbYsFhCQ=
+    on:
+      tags: true
+      repo: kalabox/kalabox-app-php
+      branch: v0.12
+  - provider: s3
+    access_key_id: AKIAJFNVIG2AAFVAN35A
+    secret_access_key:
+      secure: c+bYXpw36GEcR8EnCmq5KQcJYoTchJy5VL2L30rjYjpP/gDyAemAq3bGTEW/OfxMdTa36n5rzxclt2icW92P3bEZND6ZEUFTNg+2L6K/BlX1WZ6vJOFrPeYRuvuvsprOdJ2jJE6gPLr0hKzyQ35A7f5FPKV1vtXq0qPWDeCi1tI=
+    bucket: apps.kalabox.io
+    local-dir: dev_build
+    acl: public_read
+    region: us-west-2
+    skip_cleanup: true
+    on:
+      repo: kalabox/kalabox-app-php
+      branch: v0.12
+  - provider: releases
+    api_key:
+      secure: goCp85FNFNRiLbYGlcxDXkmx7gUqTWzzMsvkeiFh/QnpDJJvQ86Ql1hKXPB+djHSEPLn7TOFth8Xg1HmvIidGgfvZKexMA8KGwI2sgYJm96DMDxmFkju+94THoXIESxpoBnb1K9I0zkP6GhB1OdNNky5ZTTYMizjB/f8795zRGU=
+    file: prod_build/kalabox-app-php-$TRAVIS_TAG.tar.gz
+    skip_cleanup: true
+    on:
+      repo: kalabox/kalabox-app-php
+      tags: true
