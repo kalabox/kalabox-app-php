@@ -73,11 +73,21 @@ development.
 
 NOTE: You might want to make sure you get npm set up so you can install global modules without sudo. Agree to install command line tools if it prompts you when you run the git step.
 
-```
+```bash
+# Navigate into your CLI direc
 cd /path/to/kalabox-cli/node_modules
-rm -rf kalabox-app-pantheon
-git clone https://github.com/kalabox/kalabox-app-pantheon.git
-cd kalabox-app-pantheon
+
+# Remove the PHP app that auto-pulls when you install the CLI source
+# and replace it with the source repo
+rm -rf kalabox-app-php
+git clone https://github.com/kalabox/kalabox-app-php.git
+
+# Install its dependencies
+cd kalabox-app-php
+npm install
+
+# Install the app's dependencies
+cd app
 npm install
 ```
 
@@ -90,9 +100,9 @@ and then `kbox create pantheon` to see the changes in a running app.
 Sometimes its generally easier to create an app and work there first before
 merging your changes back into the template. Here are a few good workflows.
 
-```
+```bash
 # Testing config changes
-kbox create pantheon -- --name=myapp
+kbox create pantheon -- --name=myapp --from=/path/to/kalabox-cli/node_modules/kalabox-app-php/app
 cd myapp
 #
 # 1. Edit config files
@@ -100,7 +110,7 @@ cd myapp
 kbox restart
 
 # Testing dockerfile changes
-kbox create pantheon -- --name=myapp
+kbox create pantheon -- --name=myapp --from=/path/to/kalabox-cli/node_modules/kalabox-app-php/app
 cd myapp
 #
 # 1. Edit `kalabox-compose.yml` or `kalabox-cli.yml` so you are building from
