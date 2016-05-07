@@ -61,7 +61,7 @@ deploy:
     skip_cleanup: true
     on:
       repo: kalabox/kalabox-app-php
-      branch: 1223-refactorAppPlugins
+      branch: v0.12
   - provider: releases
     api_key:
       secure: goCp85FNFNRiLbYGlcxDXkmx7gUqTWzzMsvkeiFh/QnpDJJvQ86Ql1hKXPB+djHSEPLn7TOFth8Xg1HmvIidGgfvZKexMA8KGwI2sgYJm96DMDxmFkju+94THoXIESxpoBnb1K9I0zkP6GhB1OdNNky5ZTTYMizjB/f8795zRGU=
