@@ -8,6 +8,7 @@ v0.12.0-beta2
 #### Bug Fixes
 
 * Improved deployment [#1223](https://github.com/kalabox/kalabox/issues/1223)
+* Fixed an issue where the build process was not perserving script executable permissions [#1341](https://github.com/kalabox/kalabox/issues/1341)
 
 v0.12.0-beta1
 =============
