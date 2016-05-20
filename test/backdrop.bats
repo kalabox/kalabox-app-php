@@ -127,7 +127,7 @@ setup() {
   $KBOX list | grep "\"name\": \"$PHP_BACKDROP_NAME\""
   $KBOX list | grep "\"url\": \"http://${PHP_BACKDROP_NAME}.kbox\""
   $KBOX list | grep "\"type\": \"php\""
-  $KBOX list | grep "\"version\": \"0.12\""
+  $KBOX list | grep "\"version\": \"0.12"
   $KBOX list | grep "\"location\": \"${KBOX_APP_DIR}/${PHP_BACKDROP_NAME}\""
   $KBOX list | grep "\"running\": true"
 
