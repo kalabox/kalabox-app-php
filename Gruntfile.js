@@ -39,10 +39,11 @@ module.exports = function(grunt) {
     copy: {
       app: {
         src: [
-          'package.json',
-          'lib/**/*',
+          'index.js',
+          'lib/*.js',
           'app/**/*',
-          'app/.gitignore'
+          'app/.gitignore',
+          'package.json'
         ],
         dest: 'build',
         expand: true,
