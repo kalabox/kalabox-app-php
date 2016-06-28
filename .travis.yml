@@ -3,21 +3,55 @@ sudo: required
 node_js:
 - '4.2'
 before_install:
-- cp ci/travis-ci.sh $HOME/
-- chmod +x $HOME/travis-ci.sh
-- $HOME/travis-ci.sh before-install
+
+  # Global install some npm
+  - npm install -g grunt-cli
+
+  # Install the app deps
+  - cd ${TRAVIS_BUILD_DIR}/app
+  - npm install --production
+  - cd ${TRAVIS_BUILD_DIR}
+
+  # Install kalabox
+  - sudo apt-get -y update
+  - sudo apt-get -y install iptables cgroup-bin bridge-utils curl
+  - curl -fsSL -o /tmp/kalabox.deb "http://installer.kalabox.io/kalabox-latest-dev.deb"
+  - sudo dpkg -i /tmp/kalabox.deb
+
 before_script:
-- $HOME/travis-ci.sh before-script
+
+  # Nice dev helpers to verify our env
+  - ./scripts/travis-env.sh
+
+  # Sanity checks
+  - node --version
+  - npm --version
+  - grunt --version
+  - kbox version
+
 script:
-- $HOME/travis-ci.sh script
-after_script:
-- $HOME/travis-ci.sh after-script
-after_success:
-- $HOME/travis-ci.sh after-success
+
+  # Run code tests
+  - grunt test:code
+  # Ensure images
+  - grunt test:images
+  # Do the KALABOX_TEST_GROUP
+  - grunt test:$KALABOX_TEST_GROUP
+
 before_deploy:
-- $HOME/travis-ci.sh before-deploy
-after_deploy:
-- $HOME/travis-ci.sh after-deploy
+
+  # Assume this is a dev release unless TRAVIS_TAG is defined
+  - DEV=true
+  - if [ ! -z "$TRAVIS_TAG" ]; then DEV=false; fi
+
+  # Build the release
+  - mkdir -p release
+  - grunt pkg --dev=$DEV
+
+  # Name the release depending on whether it is an official release or not
+  - if [ -z "$TRAVIS_TAG" ]; then cp -rf dist/kalabox-app-pantheon* release/kalabox-app-pantheon-latest.tar.gz; fi
+  - if [ ! -z "$TRAVIS_TAG" ]; then cp -rf dist/kalabox-app-pantheon* release/kalabox-app-pantheon-$TRAVIS_TAG.tar.gz; fi
+
 cache:
   directories:
   - node_modules
@@ -27,9 +61,8 @@ notifications:
   email:
     recipients:
     - mike@kalabox.io
-    - riley@kalabox.io
+    - alec@kalabox.io
     on_success: always
-
 env:
   global:
     - secure: QQZ0ayL4Tedql8rpvGkGeyGQT8MFHkhzRYDqI8F5iFVU7RBZEBBeMKrDRb8IJNssOsIodq4KLedIW/FMcs6Uq1Xm8Vhi9TVNqIZMiCYGtU5ByFgoYRUBgInppiz/Km8YoMBXqjUpOqa05zA72J4I6UlAM0KgdDkC9cIkn1tBPj4=
@@ -42,30 +75,22 @@ env:
     - KALABOX_TEST_GROUP=drush
     - KALABOX_TEST_GROUP=backdrush
 deploy:
-  - provider: npm
-    email: mike@kalamuna.com
-    api_key:
-      secure: QlBk3ArzdGYj2K8gekbAbqRdXgFWnJfugQIBypB1kBFMFUoEaS5Hp9/wujeA4ABxNKL/o2UpJn8UjG3dR/ZmugmcUb/maeIwTA8VeMxcjdHdB6ijtVPObNrouH5Rz0RcHbsPvyoKbFJFawpt90ivFERyLba9cD9HVPPZbYsFhCQ=
-    on:
-      tags: true
-      repo: kalabox/kalabox-app-php
-      branch: v0.12
   - provider: s3
     access_key_id: AKIAJFNVIG2AAFVAN35A
     secret_access_key:
       secure: c+bYXpw36GEcR8EnCmq5KQcJYoTchJy5VL2L30rjYjpP/gDyAemAq3bGTEW/OfxMdTa36n5rzxclt2icW92P3bEZND6ZEUFTNg+2L6K/BlX1WZ6vJOFrPeYRuvuvsprOdJ2jJE6gPLr0hKzyQ35A7f5FPKV1vtXq0qPWDeCi1tI=
     bucket: apps.kalabox.io
-    local-dir: dev_build
+    local-dir: release
     acl: public_read
     region: us-west-2
     skip_cleanup: true
     on:
       repo: kalabox/kalabox-app-php
-      branch: v0.12
+      branch: v0.13
   - provider: releases
     api_key:
       secure: goCp85FNFNRiLbYGlcxDXkmx7gUqTWzzMsvkeiFh/QnpDJJvQ86Ql1hKXPB+djHSEPLn7TOFth8Xg1HmvIidGgfvZKexMA8KGwI2sgYJm96DMDxmFkju+94THoXIESxpoBnb1K9I0zkP6GhB1OdNNky5ZTTYMizjB/f8795zRGU=
-    file: prod_build/kalabox-app-php-$TRAVIS_TAG.tar.gz
+    file: release/kalabox-app-php-$TRAVIS_TAG.tar.gz
     skip_cleanup: true
     on:
       repo: kalabox/kalabox-app-php

@@ -25,15 +25,15 @@ setup() {
 
   # Versions to check
   BOWER_VERSION=1.7
-  COMPOSER_VERSION=1.0
-  DRUSH_VERSION=8.1
+  COMPOSER_VERSION=1.1
+  DRUSH_VERSION=8.
   GIT_VERSION=2.6
   GRUNT_VERSION=0.1
   GULP_VERSION=1.2
   MYSQL_CLIENT_VERSION=14.
   NODE_VERSION=4.4
   NPM_VERSION=2.14
-  PHP_VERSION=7.
+  PHP_VERSION=5.6
   RSYNC_VERSION=3.1
 
   # We need to actually go into this app dir until
@@ -127,7 +127,7 @@ setup() {
   $KBOX list | grep "\"name\": \"$PHP_DRUPAL8_NAME\""
   $KBOX list | grep "\"url\": \"http://${PHP_DRUPAL8_NAME}.kbox\""
   $KBOX list | grep "\"type\": \"php\""
-  $KBOX list | grep "\"version\": \"0.12"
+  $KBOX list | grep "\"version\": \"0.13"
   $KBOX list | grep "\"location\": \"${KBOX_APP_DIR}/${PHP_DRUPAL8_NAME}\""
   $KBOX list | grep "\"running\": true"
 

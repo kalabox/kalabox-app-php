@@ -27,12 +27,6 @@ module.exports = function(grunt) {
           'app/plugins/*/*.js',
           'app/plugins/*/lib/*.js'
         ]
-      },
-      versions: {
-        src: [
-          'package.json',
-          'app/package.json'
-        ],
       }
     },
 
@@ -44,27 +38,26 @@ module.exports = function(grunt) {
     // Copy relevant things
     copy: {
       app: {
-        src: ['**/*'],
+        src: [
+          'package.json',
+          'lib/**/*',
+          'app/**/*',
+          'app/.gitignore'
+        ],
         dest: 'build',
-        cwd: 'app',
         expand: true,
         options: {
           mode: true,
           process: function(content, srcPath) {
-
             // Switch it up
             switch (srcPath) {
-
               // Return a dev version
-              // @todo: what happens if another project has the same
-              //        version?
               case 'app/package.json':
                 return content.replace(pkg.version, version);
-
-              // Return the same
+              case 'package.json':
+                return content.replace(pkg.version, version);
               default:
                 return content;
-
             }
           },
         }
@@ -87,18 +80,18 @@ module.exports = function(grunt) {
     // This handles automatic version bumping
     bump: {
       options: {
-        files: ['<%= files.versions.src %>'],
+        files: ['package.json', 'app/package.json'],
         updateConfigs: [],
         commit: true,
         commitMessage: 'Release v%VERSION%',
-        commitFiles: ['<%= files.versions.src %>'],
+        commitFiles: ['package.json', 'app/package.json'],
         createTag: true,
         tagName: 'v%VERSION%',
         tagMessage: 'Version %VERSION%',
         pushTo: 'origin',
         gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d',
         globalReplace: false,
-        prereleaseName: 'beta',
+        prereleaseName: 'unstable',
         metadata: '',
         regExp: false
       }
@@ -121,10 +114,6 @@ module.exports = function(grunt) {
 
     // Basic BATS test
     shell: {
-      install: {
-        options: testOpts,
-        command: testCommand + ' ./test/install.bats'
-      },
       images: {
         options: testOpts,
         command: testCommand + ' ./test/images.bats'
@@ -162,7 +151,11 @@ module.exports = function(grunt) {
             cwd: 'build'
           }
         },
-        command: 'npm install --production'
+        command: [
+          'npm install --production',
+          'cd app',
+          'npm install --production'
+        ].join(' && ')
       }
     }
 
@@ -223,10 +216,6 @@ module.exports = function(grunt) {
   /*
    * Functional tests
    */
-  // Verify the install
-  grunt.registerTask('test:install', [
-    'shell:install'
-  ]);
   // Build the images
   grunt.registerTask('test:images', [
     'shell:images'
@@ -266,7 +255,6 @@ module.exports = function(grunt) {
 
   // All func tests
   grunt.registerTask('test:func', [
-    'test:install',
     'test:images',
     'test:frameworks',
     'test:drush',

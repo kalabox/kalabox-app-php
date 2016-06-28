@@ -26,7 +26,7 @@ setup() {
   # Versions to check
   BACKDRUSH_VERSION="This command is not supported yet by Backdrop."
   BOWER_VERSION=1.7
-  COMPOSER_VERSION=1.0
+  COMPOSER_VERSION=1.1
   GIT_VERSION=2.6
   GRUNT_VERSION=0.1
   GULP_VERSION=1.2
@@ -127,7 +127,7 @@ setup() {
   $KBOX list | grep "\"name\": \"$PHP_BACKDROP_NAME\""
   $KBOX list | grep "\"url\": \"http://${PHP_BACKDROP_NAME}.kbox\""
   $KBOX list | grep "\"type\": \"php\""
-  $KBOX list | grep "\"version\": \"0.12"
+  $KBOX list | grep "\"version\": \"0.13"
   $KBOX list | grep "\"location\": \"${KBOX_APP_DIR}/${PHP_BACKDROP_NAME}\""
   $KBOX list | grep "\"running\": true"
 
