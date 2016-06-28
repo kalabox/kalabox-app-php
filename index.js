@@ -10,31 +10,13 @@ module.exports = function(kbox) {
   var _ = require('lodash');
 
   /*
-   * App package location.
-   * NOTE: if in dev mode and not in a binary this should be internal. Internal
-   * locations are relative to the node_modules folder
-   * All
-   * other modes should be an URL to an archive and then the path location of the app
-   * relative to the archive root
+   * App package location
    */
   var packageData = function() {
 
-    // Get relevant config options
-    var version = require(path.join(__dirname, 'package.json')).version;
-    var locked = kbox.core.deps.get('globalConfig').locked;
-
-    // Define our download versions
-    var devUrl = 'http://apps.kalabox.io/kalabox-app-php-latest.tar.gz';
-    var prodUrl = [
-      'https://github.com',
-      'kalabox/kalabox-app-php/releases/download',
-      'v' + version,
-      'kalabox-app-php-' + version + '.tar.gz'
-    ];
-
     // Return our pkg data
     return {
-      url: (locked) ? prodUrl.join('/') : devUrl
+      dir: path.join(__dirname, 'app')
     };
 
   };

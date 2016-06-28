@@ -25,7 +25,7 @@ setup() {
 
   # Versions to check
   BOWER_VERSION=1.7
-  COMPOSER_VERSION=1.0
+  COMPOSER_VERSION=1.1
   DRUSH_VERSION=8.1
   GIT_VERSION=2.6
   GRUNT_VERSION=0.1
@@ -33,7 +33,7 @@ setup() {
   MYSQL_CLIENT_VERSION=14.
   NODE_VERSION=4.4
   NPM_VERSION=2.14
-  PHP_VERSION=7.
+  PHP_VERSION=5.6
   RSYNC_VERSION=3.1
 
   # We need to actually go into this app dir until
