@@ -49,8 +49,12 @@ before_deploy:
   - grunt pkg --dev=$DEV
 
   # Name the release depending on whether it is an official release or not
-  - if [ -z "$TRAVIS_TAG" ]; then cp -rf dist/kalabox-app-pantheon* release/kalabox-app-pantheon-latest.tar.gz; fi
-  - if [ ! -z "$TRAVIS_TAG" ]; then cp -rf dist/kalabox-app-pantheon* release/kalabox-app-pantheon-$TRAVIS_TAG.tar.gz; fi
+  - if [ -z "$TRAVIS_TAG" ]; then cp -rf dist/*.zip release/kalabox-app-php-latest.zip; fi
+  - if [ -z "$TRAVIS_TAG" ]; then cp -rf dist/*.tar.gz release/kalabox-app-php-latest.tar.gz; fi
+
+  # Official releases
+  - if [ ! -z "$TRAVIS_TAG" ]; then cp -rf dist/*.zip release/kalabox-app-php-$TRAVIS_TAG.zip; fi
+  - if [ ! -z "$TRAVIS_TAG" ]; then cp -rf dist/*.tar.gz release/kalabox-app-php-$TRAVIS_TAG.tar.gz; fi
 
 cache:
   directories:
@@ -90,7 +94,9 @@ deploy:
   - provider: releases
     api_key:
       secure: goCp85FNFNRiLbYGlcxDXkmx7gUqTWzzMsvkeiFh/QnpDJJvQ86Ql1hKXPB+djHSEPLn7TOFth8Xg1HmvIidGgfvZKexMA8KGwI2sgYJm96DMDxmFkju+94THoXIESxpoBnb1K9I0zkP6GhB1OdNNky5ZTTYMizjB/f8795zRGU=
-    file: release/kalabox-app-php-$TRAVIS_TAG.tar.gz
+    file:
+      - release/kalabox-app-php-$TRAVIS_TAG.tar.gz
+      - release/kalabox-app-php-$TRAVIS_TAG.zip
     skip_cleanup: true
     on:
       repo: kalabox/kalabox-app-php
