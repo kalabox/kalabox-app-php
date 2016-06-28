@@ -89,11 +89,6 @@ pluginconfig:
   #
   sharing:
     share: data:/var/www/html
-    ignore:
-      - '!*modules*'
-      - "sites/default/files"
-      - "files"
-      - "wp-content/uploads"
 
   #
   # services plugin config.
