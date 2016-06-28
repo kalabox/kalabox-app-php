@@ -38,27 +38,26 @@ module.exports = function(grunt) {
     // Copy relevant things
     copy: {
       app: {
-        src: ['**/*'],
+        src: [
+          'package.json',
+          'lib/**/*',
+          'app/**/*',
+          'app/.gitignore'
+        ],
         dest: 'build',
-        cwd: 'app',
         expand: true,
         options: {
           mode: true,
           process: function(content, srcPath) {
-
             // Switch it up
             switch (srcPath) {
-
               // Return a dev version
-              // @todo: what happens if another project has the same
-              //        version?
               case 'app/package.json':
                 return content.replace(pkg.version, version);
-
-              // Return the same
+              case 'package.json':
+                return content.replace(pkg.version, version);
               default:
                 return content;
-
             }
           },
         }
