@@ -1,4 +1,4 @@
-v0.13.0-unstable.1
+v0.13.0-alpha.1
 ==================
 
 * Upgraded to 0.13.x. [#1409](https://github.com/kalabox/kalabox/issues/1409)
