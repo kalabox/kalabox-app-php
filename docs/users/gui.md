@@ -39,7 +39,7 @@ Your app should show up on the dashboard immediately, although it will be greyed
 
 When it has finished downloading, the green power light should be on and a color screenshot should be present:
 
-![Pantheon site successfully created](../images/createSuccess.png)
+![Site successfully created](../images/createSuccess.png)
 
 Click on the screenshot or site title to visit your site in the browser.
 
@@ -47,7 +47,7 @@ Click on the screenshot or site title to visit your site in the browser.
 
 ![Site actions dropdown](../images/siteActions.png)
 
-If you click the "Actions" gear symbol on your new Pantheon app, you'll see a number of options. Select "Connection Info" to see the database credentials to connect to your apps database from a browser like [PHPMyAdmin](https://www.phpmyadmin.net) or [SQLPro](http://www.sequelpro.com/):
+If you click the "Actions" gear symbol on your new PHP app, you'll see a number of options. Select "Connection Info" to see the database credentials to connect to your apps database from a browser like [PHPMyAdmin](https://www.phpmyadmin.net) or [SQLPro](http://www.sequelpro.com/):
 
 ![Connection info](../images/connectionInfo.png)
 
