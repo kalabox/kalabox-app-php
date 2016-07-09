@@ -121,6 +121,7 @@ module.exports = function(grunt) {
         config: '.jscsrc'
       }
     },
+    mdlint: ['docs/**/*.md'],
 
     // Basic BATS test
     shell: {
@@ -221,7 +222,8 @@ module.exports = function(grunt) {
   // Standards and code
   grunt.registerTask('test:code', [
     'jshint',
-    'jscs'
+    'jscs',
+    'mdlint'
   ]);
 
   /*
