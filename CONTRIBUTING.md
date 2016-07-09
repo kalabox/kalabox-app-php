@@ -44,7 +44,7 @@ critera
 Contributing
 --------------------------
 
-See: http://docs.kalabox.io/developers/contrib/
+See: http://docs.kalabox.io/en/stable/developers/contrib/
 
 Submitting Fixes
 ----------------
