@@ -1,122 +1,61 @@
-# Kalabox Php App
+PHP on Kalabox
+==============
 
-## Overview
+**"PHP on Kalabox"** is a [Kalabox](http://kalabox.io) plugin that allows users spin up very basic Drupal, Wordpress and Backdrop sites and..
 
-By default Kalabox can create apps to run various PHP things like Wordpress
-or Drupal.
+  1. Get the recommended server environment for your CMS.
+  4. Get CMD specific powertools such as Drush.
 
-Here are some of the things you can do
+While **"PHP on Kalabox"** is an external Kalabox plugin we actually include it as part of the default Kalabox offering along with the [**"Pantheon on Kalabox"**](http://github.com/kalabox/kalabox-app-pantheon) plugin.
 
-```bash
+**We highly recommend you read the main [Kalabox docs](http://docs.kalabox.io) before continuing.**
 
-Global commands that can be run from anywhere
-  create
-      drupal7      Creates a drupal7 app
-      drupal8      Creates a drupal8 app
-      pantheon     Creates a Pantheon app.
-  env              Print Kalabox environmental vars.
-  list             Display list of apps.
-  update           Run this after you update your Kalabox code.
-  version          Display the kbox version.
+Getting Started
+---------------
 
-Actions that can be performed on this app
-  config           Display the kbox application's configuration.
-  destroy          Completely destroys and removes an app.
-  rebuild          Rebuilds your app while maintaining your app data.
-  restart          Stop and then start a running kbox application.
-  services         Display connection info for services.
-  start            Start an installed kbox application.
-  stop             Stop a running kbox application.
+Your best bet to learn more about the various aspects of **"PHP on Kalabox"** is to check out [our documentation](http://php.kalabox.io). Here are some good topics to get you started:
 
-Commands and tools this app can use
-  bower            Run a bower command
-  composer         Run a composer cli command
-  drush            Run a drush command on your codebase
-  git              Run a git command on your codebase
-  grunt            Run a grunt command
-  gulp             Run a gulp command
-  mysql            Drop into a mysql shell
-  node             Run a node command
-  npm              Run a npm command
-  php              Run a php cli command
-  rsync            Run a rsync command on your files directory
-  terminal         'ssh' into your appserver
+  * [Using the Kalabox CLI with PHP apps](http://pantheon.kalabox.io/users/cli)
+  * [Using the Kalabox GUI with Pantheon apps](http://pantheon.kalabox.io/users/gui)
+  * [PHP Services & Environment](http://pantheon.kalabox.io/users/services)
+  * [The PHP dev tooling with which we ship](http://pantheon.kalabox.io/users/tooling)
 
-Options:
-  -h, --help     Display help message.                                 [boolean]
-  -v, --verbose  Use verbose output.                                   [boolean]
+Support
+-------
 
-```
+To get help...
 
-## Creating a Drupal app
+  1. Make sure your question isn't answered in either the [core docs](http://support.kalabox.io/solution/categories), the [Pantheon app docs](http://pantheon.kalabox.io/), or the [PHP docs](http://php.kalabox.io/).
+  2. Thoroughly search the [Github issue queue](https://github.com/kalabox/kalabox/issues) for any existing issues similar to yours.
+  3. If all else fails, create an issue and follow the pre-populated guidelines and the [CONTRIB.MD](https://raw.githubusercontent.com/kalabox/kalabox-app-php/v0.13/CONTRIBUTING.md) as best as possible.
 
-```
-cd /my/apps/directory
+Some examples of good issue reporting:
 
-# Create drupal 7 app
-kbox create drupal7
+  - [https://github.com/kalabox/kalabox/issues/565](https://github.com/kalabox/kalabox/issues/565)
+  - [https://github.com/kalabox/kalabox/issues/557](https://github.com/kalabox/kalabox/issues/557)
 
-# Create drupal 8 app
-kbox create drupal8
-```
+Kalabox is an open-source project. As such, support is a community-lead effort. Please help us keep issue noise to a minimum and be patient with the Kalabox community members who donate time to help out.
 
-## Options you can use during a create
+**If you are interested in dedicated support or customizations, check out [our support offerings.](http://kalabox.io/support)**
 
-```
-Options:
-  -h, --help     Display help message.                                 [boolean]
-  -v, --verbose  Use verbose output.                                   [boolean]
-  --name         The name of your app.                                  [string]
-  --dir          Creates the app in this directory. Defaults to CWD.    [string]
-```
+Development Releases
+--------------------
 
-## Getting to your Database
+**Not For General Use**
+These builds are intended primarily for developers working on Kalabox and those who are experienced enough with the Kalabox framework and want to test apps before they are released. Most users won't be interested.
 
-To get connection info so you can access your database from an external tool
-like SequelPro do the following:
+We produce development releases for every commit merged into our `v0.13` branch. **These releases are not officially supported** but we have made them available to intrepid users who want to try the bleeding edge or are interested in trying out a recent bug fix before an official release is rolled.
 
-```
-cd /path/to/app
-kbox services
-[
-  {
-    "name": "appserver",
-    "project": "test",
-    "url": [
-      "http://test.kbox"
-    ]
-  },
-  {
-    "name": "db",
-    "project": "test",
-    "credentials": {
-      "database": "drupal",
-      "user": "drupal",
-      "password": "drupal",
-      "host": "10.13.37.100",
-      "port": "32836"
-    }
-  }
-]
-```
+  * **Windows** - [http://apps.kalabox.io/kalabox-app-php-latest.zip](http://apps.kalabox.io/kalabox-app-php-latest.zip)
+  * **POSIX** - [http://apps.kalabox.io/kalabox-app-php-latest.tar.gz](http://apps.kalabox.io/kalabox-app-php-latest.tar.gz)
 
-Or to drop into a mysql shell
+**NOTE:** Releases can take some time to build after we merge in commits. For that reason you might want to check the time of the last commit and if it is within a few hours you might want to hold off a bit before trying the new latest release.
 
-```
-cd /path/to/app
-kbox mysql
+You can also easily verify that the release you downloaded matches the latest commit. All development releases look something like `0.13.0-alpha.1-4-g63b0db0`. This means 4 commits after the `0.13.0-alpha.1` tag and with commit hash `g63b0db0`. You should make sure this commit hash matches or comes before the latest commit.
 
-# Import DB
-kbox mysql drupal < /path/to/db.sql
-```
+Check out for help on [installing Kalabox plugins manually](http://docs.kalabox.io/developers/plugins)
 
-## Other Resources
+Other Resources
+---------------
 
-* [Kalabox](http://kalabox.io/)
-* [API docs](http://api.kalabox.io/)
-* [Test coverage reports](http://coverage.kalabox.io/)
 * [Mountain climbing advice](https://www.youtube.com/watch?v=tkBVDh7my9Q)
-* [Docker](https://github.com/docker/docker)
-
--------------------------------------------------------------------------------------
-(C) 2016 Kalabox Inc and friends

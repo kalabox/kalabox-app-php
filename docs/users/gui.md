@@ -1,15 +1,17 @@
 Kalabox GUI for PHP Apps
-=====================
+========================
 
 The Kalabox GUI allows you to create new Drupal, WordPress, and Backdrop sites that you can develop on your local computer, all with a few clicks of your mouse.
 
-## Access the Sidebar
+Access the Sidebar
+------------------
 
 ![Click add new site](../images/clickAddNew.png)
 
 The sidebar is where you can create new sites. To access the sidebar, either click "Add New Site" or the "+" button in the upper right-hand corner.
 
-## Create a New Site
+Create a New Site
+-----------------
 
 Click on any of the available app options:
 
@@ -43,7 +45,8 @@ When it has finished downloading, the green power light should be on and a color
 
 Click on the screenshot or site title to visit your site in the browser.
 
-## Get Database Connection Info
+Get Database Connection Info
+----------------------------
 
 ![Site actions dropdown](../images/siteActions.png)
 
@@ -51,7 +54,8 @@ If you click the "Actions" gear symbol on your new PHP app, you'll see a number 
 
 ![Connection info](../images/connectionInfo.png)
 
-## Deploying Your Work
+Deploying Your Work
+-------------------
 
 To deploy your work, you'll need to export your code, database, and files to your production server. We recommend pushing to a shared git repository to export your code, using the database connection info to transfer your database, and copying your files directory (located in the app root under /files), but there are many workflows.
 
