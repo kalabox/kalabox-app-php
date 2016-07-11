@@ -80,29 +80,6 @@ module.exports = function(kbox, app) {
       return kbox.engine.run(untarDrupal);
     })
 
-    // Remove files
-    .then(function() {
-      var untarDrupal = getAppRunner();
-      untarDrupal.opts.entrypoint = 'rm';
-      untarDrupal.opts.cmd = [
-        '-rf',
-        '/var/www/html/files'
-      ];
-      return kbox.engine.run(untarDrupal);
-    })
-
-    // Symlink to media
-    .then(function() {
-      var linkRun = getAppRunner();
-      linkRun.opts.entrypoint = 'ln';
-      linkRun.opts.cmd = [
-        '-nsf',
-        '/media',
-        '/var/www/html/files'
-      ];
-      return kbox.engine.run(linkRun);
-    })
-
     // Chown sites directory
     .then(function() {
       var chownDrupal = getAppRunner();
@@ -110,6 +87,18 @@ module.exports = function(kbox, app) {
       chownDrupal.opts.cmd = [
         '-R',
         [id, group].join(':'),
+        '/var/www/html'
+      ];
+      return kbox.engine.run(chownDrupal);
+    })
+
+    // chmod sites directory
+    .then(function() {
+      var chownDrupal = getAppRunner();
+      chownDrupal.opts.entrypoint = 'chmod';
+      chownDrupal.opts.cmd = [
+        '755',
+        '-Rv',
         '/var/www/html'
       ];
       return kbox.engine.run(chownDrupal);

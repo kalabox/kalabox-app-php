@@ -80,18 +80,6 @@ module.exports = function(kbox, app) {
       return kbox.engine.run(untarDrupal);
     })
 
-    // Symlink to media
-    .then(function() {
-      var linkRun = getAppRunner();
-      linkRun.opts.entrypoint = 'ln';
-      linkRun.opts.cmd = [
-        '-nsf',
-        '/media',
-        '/var/www/html/sites/default/files'
-      ];
-      return kbox.engine.run(linkRun);
-    })
-
     // Chown sites directory
     .then(function() {
       var chownDrupal = getAppRunner();
