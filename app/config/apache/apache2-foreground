@@ -2,11 +2,19 @@
 set -e
 
 # Set defaults
-: ${KALABOX_UID:='1000'}
-: ${KALABOX_GID:='50'}
+: "${KALABOX_UID:='1000'}"
+: "${KALABOX_GID:='50'}"
+# Note: we don't just use "apache2ctl" here because it itself is just a shell-script wrapper around apache2 which provides extra functionality like "apache2ctl start" for launching apache2 in the background.
+# (also, when run as "apache2ctl <apache args>", it does not use "exec", which leaves an undesirable resident shell process)
+: "${APACHE_CONFDIR:=/etc/apache2}"
+: "${APACHE_ENVVARS:=$APACHE_CONFDIR/envvars}"
+if test -f "$APACHE_ENVVARS"; then
+  . "$APACHE_ENVVARS"
+fi
 
 # Apache gets grumpy about PID files pre-existing
-rm -f /var/run/apache2/apache2.pid
+: "${APACHE_PID_FILE:=${APACHE_RUN_DIR:=/var/run/apache2}/apache2.pid}"
+rm -f "$APACHE_PID_FILE"
 
 # Do this so our mounted VB volumes work
 # @todo: silent fail perm setting?
@@ -15,12 +23,5 @@ usermod -u "$KALABOX_UID" www-data
 groupmod -g "$KALABOX_GID" www-data || usermod -G staff www-data
 chown -Rf www-data:www-data /var/www/html
 chown -Rf www-data:www-data /media
-
-# Create symlink here on wordpress because of how
-# wordpress is extracted on runtime instead of on build
-if [ $FRAMEWORK == "wordpress" ] && [ ! -f "/var/www/html/wp-content/uploads" ]; then
-  echo "Symlinking WP uploads to /media"
-  ln -nsf /media /var/www/html/wp-content/uploads
-fi
 
 exec apache2 -DFOREGROUND
