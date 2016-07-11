@@ -22,6 +22,5 @@ echo "Remapping apache permissions for VB sharing compat..."
 usermod -u "$KALABOX_UID" www-data
 groupmod -g "$KALABOX_GID" www-data || usermod -G staff www-data
 chown -Rf www-data:www-data /var/www/html
-chown -Rf www-data:www-data /media
 
 exec apache2 -DFOREGROUND

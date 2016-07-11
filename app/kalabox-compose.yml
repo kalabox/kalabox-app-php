@@ -48,6 +48,7 @@ data:
   volumes:
     - /var/lib/mysql
     - /var/www/html
+    - $KALABOX_APP_ROOT_BIND/files:/var/www/html/$KALABOX_APP_PHP_CONFIG_FILEMOUNT
 
 #
 # This defines a basic Drupal appserver.
