@@ -92,6 +92,18 @@ module.exports = function(kbox, app) {
       return kbox.engine.run(chownDrupal);
     })
 
+    // chmod sites directory
+    .then(function() {
+      var chownDrupal = getAppRunner();
+      chownDrupal.opts.entrypoint = 'chmod';
+      chownDrupal.opts.cmd = [
+        '755',
+        '-Rv',
+        '/var/www/html'
+      ];
+      return kbox.engine.run(chownDrupal);
+    })
+
     // Finish up
     .nodeify(done);
 
