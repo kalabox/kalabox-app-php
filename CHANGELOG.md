@@ -3,6 +3,7 @@ v0.13.0-alpha.2
 
 * Rebooted documentation. [#1322](https://github.com/kalabox/kalabox/issues/1322)
 * Improved app to better work with new `unison` file sharing. [#1440](https://github.com/kalabox/kalabox/issues/1440)
+* Enforce Unix line endings for `bash` scripts. [#1457](https://github.com/kalabox/kalabox/issues/1457)
 * Fixed CI so it actually uses our CI code in `sysConfRoot`
 
 v0.13.0-alpha.1
