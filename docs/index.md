@@ -15,10 +15,10 @@ Getting Started
 
 Your best bet to learn more about the various aspects of **"PHP on Kalabox"** is to check out [our documentation](http://php.kalabox.io). Here are some good topics to get you started:
 
-  * [Using the Kalabox CLI with PHP apps](http://pantheon.kalabox.io/users/cli)
-  * [Using the Kalabox GUI with Pantheon apps](http://pantheon.kalabox.io/users/gui)
-  * [PHP Services & Environment](http://pantheon.kalabox.io/users/services)
-  * [The PHP dev tooling with which we ship](http://pantheon.kalabox.io/users/tooling)
+  * [Using the Kalabox CLI with PHP apps](http://php.kalabox.io/en/stable/users/cli)
+  * [Using the Kalabox GUI with Pantheon apps](http://php.kalabox.io/en/stable/users/gui)
+  * [PHP Services & Environment](http://php.kalabox.io/en/stable/users/services)
+  * [The PHP dev tooling with which we ship](http://php.kalabox.io/en/stable/users/tooling)
 
 Support
 -------
