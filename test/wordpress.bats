@@ -24,13 +24,13 @@ setup() {
   mkdir -p "$KBOX_APP_DIR"
 
   # Versions to check
-  BOWER_VERSION=1.7
-  GIT_VERSION=2.6
-  GRUNT_VERSION=0.1
-  GULP_VERSION=1.2
-  NODE_VERSION=4.4
-  NPM_VERSION=2.14
-  RSYNC_VERSION=3.1
+  BOWER_VERSION=1.
+  GIT_VERSION=2.
+  GRUNT_VERSION=1.
+  GULP_VERSION=1.
+  NODE_VERSION=4.
+  NPM_VERSION=2.
+  RSYNC_VERSION=3.
 
   # We need to actually go into this app dir until
   # https://github.com/kalabox/kalabox/issues/1221
