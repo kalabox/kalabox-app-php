@@ -140,7 +140,7 @@ module.exports = function(kbox, app) {
     // Generate information about services if we can
     .then(function(runningServices) {
       if (_.isEmpty(runningServices)) {
-        return false;
+        return 'App is not running.';
       }
       else {
         return Promise.map(runningServices, function(service) {

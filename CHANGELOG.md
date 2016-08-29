@@ -1,3 +1,8 @@
+v0.13.0-rc.1
+==================
+
+* Updated `kbox services` output to be more helpful. [#1551](https://github.com/kalabox/kalabox/issues/1551)
+
 v0.13.0-beta.2
 ==================
 
