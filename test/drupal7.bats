@@ -127,7 +127,6 @@ setup() {
   $KBOX list | grep "\"name\": \"$PHP_DRUPAL7_NAME\""
   $KBOX list | grep "\"url\": \"http://${PHP_DRUPAL7_NAME}.kbox\""
   $KBOX list | grep "\"type\": \"php\""
-  $KBOX list | grep "\"version\": \"0.13"
   $KBOX list | grep "\"location\": \"${KBOX_APP_DIR}/${PHP_DRUPAL7_NAME}\""
   $KBOX list | grep "\"running\": true"
 

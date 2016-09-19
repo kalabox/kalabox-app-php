@@ -1,3 +1,8 @@
+v2.0.0
+==================
+
+* No changes! Bumping for version parity across major projects.
+
 v0.13.0-rc.2
 ==================
 
