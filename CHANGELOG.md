@@ -1,20 +1,25 @@
+v2.0.1
+======
+
+* Updated documentation to better reflect how to use `db` connection info. [#1600](https://github.com/kalabox/kalabox/issues/1600)
+
 v2.0.0
-==================
+======
 
 * No changes! Bumping for version parity across major projects.
 
 v0.13.0-rc.2
-==================
+============
 
 * No changes! Bumping for version parity across major projects.
 
 v0.13.0-rc.1
-==================
+============
 
 * Updated `kbox services` output to be more helpful. [#1551](https://github.com/kalabox/kalabox/issues/1551)
 
 v0.13.0-beta.2
-==================
+==============
 
 * Rebooted documentation. [#1322](https://github.com/kalabox/kalabox/issues/1322)
 * Improved app to better work with new `unison` file sharing. [#1440](https://github.com/kalabox/kalabox/issues/1440)
@@ -23,7 +28,7 @@ v0.13.0-beta.2
 * Fixed broken links in main `README.md` and `RTD` index.
 
 v0.13.0-alpha.1
-==================
+===============
 
 * Upgraded to 0.13.x. [#1409](https://github.com/kalabox/kalabox/issues/1409)
 * Refactored app to include connectors previously found in core. [#1223](https://github.com/kalabox/kalabox/issues/1223)

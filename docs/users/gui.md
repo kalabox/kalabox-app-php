@@ -50,9 +50,13 @@ Get Database Connection Info
 
 ![Site actions dropdown](../images/siteActions.png)
 
-If you click the "Actions" gear symbol on your new PHP app, you'll see a number of options. Select "Connection Info" to see the database credentials to connect to your apps database from a browser like [PHPMyAdmin](https://www.phpmyadmin.net) or [SQLPro](http://www.sequelpro.com/):
+If you click the "Actions" gear symbol on your new PHP app, you'll see a number of options. Select "Connection Info" to see the database credentials to connect to your apps database from a browser like [PHPMyAdmin](https://www.phpmyadmin.net) or [SQLPro](http://www.sequelpro.com/) or to connect during the installation of your app.
 
 ![Connection info](../images/connectionInfo.png)
+
+The left side of your connection info will contain the credentials to connect to your database from an external client like SequelPro. The right side of the info will contain information you can use during the installation of Drupal. WordPress and Backdrop should be able to detect these settings automatically.
+
+You can also use the right side connection info for any local specific code.
 
 Deploying Your Work
 -------------------
