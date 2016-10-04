@@ -171,7 +171,7 @@ kbox rebuild -- -v
 services
 --------
 
-Displays relevant connection information for your PHP services. You can use this information to connect to your database from an external DB client like [SQLPro](http://www.sequelpro.com/) or to enter correct DB credentials during the setup of Drupal sites.
+Displays relevant connection information for your PHP services. You can use this information to connect to your database from an external DB client like [SQLPro](http://www.sequelpro.com/) or to enter correct DB credentials during the setup of PHP sites.
 
 `kbox services`
 
@@ -180,4 +180,78 @@ Options:
   -h, --help     Display help message.                                 [boolean]
   -v, --verbose  Use verbose output.                                   [boolean]
   --debug        Use debug output.                                     [boolean]
+```
+
+```
+# Get external db connection info for SequelPro or other sqlClient
+kbox services
+[
+  {
+    "name": "appserver",
+    "project": "date",
+    "url": [
+      "http://date.kbox"
+    ]
+  },
+  {
+    "name": "db",
+    "project": "date",
+    # Use these settings for external connections
+    "external_connection_info": {
+      "database": "drupal",
+      "user": "drupal",
+      "password": "drupal",
+      "host": "date.kbox",
+      "port": "32768"
+    },
+    # Ignore these settings for external connections
+    "internal_connection_info": {
+      "database": "drupal",
+      "user": "drupal",
+      "password": "drupal",
+      "host": "database",
+      "port": 3306
+    }
+  },
+  {
+    "name": "unison",
+    "project": "date"
+  }
+]
+
+# Get internal db connection info for settings up a drupal, backdrop or wordpress site
+kbox services
+[
+  {
+    "name": "appserver",
+    "project": "date",
+    "url": [
+      "http://date.kbox"
+    ]
+  },
+  {
+    "name": "db",
+    "project": "date",
+    # Do not use these settings for internal connections
+    "external_connection_info": {
+      "database": "drupal",
+      "user": "drupal",
+      "password": "drupal",
+      "host": "date.kbox",
+      "port": "32768"
+    },
+    # use these settings for internal connections
+    "internal_connection_info": {
+      "database": "drupal",
+      "user": "drupal",
+      "password": "drupal",
+      "host": "database",
+      "port": 3306
+    }
+  },
+  {
+    "name": "unison",
+    "project": "date"
+  }
+]
 ```
