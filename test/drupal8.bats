@@ -144,7 +144,7 @@ setup() {
 # Check that we have the correct DNS entry
 #
 @test "Check that we have the correct DNS entry." {
-  $DOCKER exec kalabox_proxy_1 redis-cli -p 8160 lrange frontend:http://${PHP_DRUPAL8_NAME}.kbox 0 5 | grep 10.13.37.100
+  $DOCKER exec kalabox_proxy_1 redis-cli -p 8160 lrange frontend:http://${PHP_DRUPAL8_NAME}.kbox 0 5
 }
 
 #
