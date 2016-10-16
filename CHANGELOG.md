@@ -1,4 +1,4 @@
-v2.1.0-rc.0
+v2.1.0-rc.1
 ===========
 
 * No changes! Bumping for version parity across major projects.
