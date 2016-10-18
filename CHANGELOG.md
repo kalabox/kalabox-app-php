@@ -1,3 +1,8 @@
+v2.1.0-rc.2
+===========
+
+* Simplify installation of deps. [#1656](https://github.com/kalabox/kalabox/issues/1656)
+
 v2.1.0-rc.1
 ===========
 

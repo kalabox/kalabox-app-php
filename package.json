@@ -17,6 +17,9 @@
     "url": "http://github.com/kalabox/kalabox-app-php",
     "email": "mike@kalabox.io"
   },
+  "scripts" : {
+    "postinstall" : "cd app && npm install"
+  },
   "dependencies": {
     "lodash": "^3.7.0"
   },
