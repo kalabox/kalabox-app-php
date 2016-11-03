@@ -125,7 +125,7 @@ setup() {
 
   # Grep a bunch of things
   $KBOX list | grep "\"name\": \"$PHP_BACKDROP_NAME\""
-  $KBOX list | grep "\"url\": \"http://${PHP_BACKDROP_NAME}.kbox\""
+  $KBOX list | grep "\"url\": \"http://${PHP_BACKDROP_NAME}.kbox.host\""
   $KBOX list | grep "\"type\": \"php\""
   $KBOX list | grep "\"location\": \"${KBOX_APP_DIR}/${PHP_BACKDROP_NAME}\""
   $KBOX list | grep "\"running\": true"
@@ -144,7 +144,7 @@ setup() {
 # Check that we have the correct DNS entry
 #
 @test "Check that we have the correct DNS entry." {
-  $DOCKER exec kalabox_proxy_1 redis-cli -p 8160 lrange frontend:http://${PHP_BACKDROP_NAME}.kbox 0 5
+  $DOCKER exec kalabox_proxy_1 redis-cli -p 8160 lrange frontend:http://${PHP_BACKDROP_NAME}.kbox.host 0 5
 }
 
 #
