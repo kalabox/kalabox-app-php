@@ -1,7 +1,7 @@
 v2.1.1
 ======
 
-* No changes! Bumping for version parity across major projects.
+* Fixed broken screenshot. [#1601](https://github.com/kalabox/kalabox/issues/1601)
 
 v2.1.0
 ======
