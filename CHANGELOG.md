@@ -1,3 +1,8 @@
+v2.1.2
+======
+
+* Fixed broken screenshot. For real this time. [#1601](https://github.com/kalabox/kalabox/issues/1601)
+
 v2.1.1
 ======
 
