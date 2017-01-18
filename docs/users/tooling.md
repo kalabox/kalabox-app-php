@@ -136,6 +136,7 @@ kbox gulp --version
 
 mysql
 -----
+**Not Available on WordPress apps**
 
 Drops you into a [mysql](http://dev.mysql.com/doc/refman/5.7/en/mysql-commands.html) shell.
 
