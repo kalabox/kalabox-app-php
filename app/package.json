@@ -2,6 +2,6 @@
   "name": "php",
   "version": "2.1.3",
   "dependencies": {
-    "lodash": "^3.9.3"
+    "lodash": "^4.17.15"
   }
 }
