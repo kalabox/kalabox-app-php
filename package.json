@@ -21,7 +21,7 @@
     "postinstall" : "cd app && npm install"
   },
   "dependencies": {
-    "lodash": "^3.7.0"
+    "lodash": "^4.17.19"
   },
   "devDependencies": {
     "bats": "git+https://github.com/sstephenson/bats.git#master",
